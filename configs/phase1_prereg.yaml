@@ -1,0 +1,1630 @@
+schema_version: 1
+frozen_at: "2026-08-18T00:00:00-07:00"
+project: ReG-CFPO
+phase: phase1
+
+deadline:
+  abstract: "2026-09-18T23:59:59-12:00"
+  paper: "2026-09-25T23:59:59-12:00"
+  official_dates_url: "https://www.iclr.cc/Conferences/2027/Dates"
+  author_guidelines_url: "https://www.iclr.cc/Conferences/2027/AuthorGuidelines"
+  verified_on: "2026-08-20"
+  superseded_schedule: ["2026-09-11 abstract", "2026-09-16 paper"]
+  supersession_authority: results/phase1/phase1_plan.md section 3.6
+
+authorization_state:
+  current: E3_STOP_RETAINED_OBJECTIVE_V2_DIAGNOSTIC_PHASE
+  previous_current: CORRECTED_E3_STOP_TARGETED_REAL_TASK_FAIL
+  E3_MEAN_SCORE_50STEP: STOP_IMMUTABLE
+  ORIGINAL_DID_NULL_OBJECTIVE: KILL
+  OBJECTIVE_V2_DIAGNOSTIC_AUTHORIZED: true
+  GRADIENT_PATH_DECOMPOSITION: RESOLVED_NULL_SHORTCUT
+  gradient_path_decomposition_artifact: reports/generated/e3_gradient_path_decomposition_v1.json
+  gradient_path_decomposition_artifact_sha256: "499ebb8778f890d71dddca947a78568a6867e10a2bd05108857237ecf1bb2393"
+  MARGIN_BINDING_PRECHECK: PASS
+  margin_binding_precheck_artifact: reports/generated/margin_binding_precheck_areg_v1.json
+  margin_binding_precheck_artifact_sha256: "2e5ef981b3c57ad703fd2ee0b8d7d05f7190d44c03472ac24d598b86164ee51d"
+  margin_binding_precheck_policy: REQUIRED_BEFORE_ANY_HINGE_MARGIN_FREEZE
+  areg_amendment_id: asymmetric_directional_credit_revision_20260826
+  TRAINING_SMOKE_AUTHORIZED: false
+  TRAINING_SMOKE_SCOPE: CLOSED_AFTER_CORRECTED_E3_STOP
+  smoke_chain_order: >-
+    Corrected mean-score E0 (gamma=0 identity and null-only; gate cases already
+    passed) -> separate engineering-only gamma calibration for ReG and Local ->
+    corrected 50-step Local/ReG rerun -> corrected readout reusing Base and
+    continued. Strictly sequential; any hard-gate failure suspends further
+    training. The prior sum-score Local/ReG runs are historical only.
+  smoke_authority: results/phase1/phase1_amendment_4090.md
+  smoke_authorized_at: "2026-08-26"
+  FORMAL_TRAINING_AUTHORIZED: false
+  A800_MIGRATION_AUTHORIZED: false
+  FINAL_HOLDOUT_VISIBLE: false
+  CORRECTED_E3_VERDICT: STOP
+  CORRECTED_E3_HARD_CONDITIONS: 8_OF_9_PASS
+  CORRECTED_E3_FAILED_GATE: targeted_dev_metric_positive
+  corrected_e3_report: reports/generated/e3_smoke_readout_mean_v2_4090.json
+  PHASE_1_SCIENTIFIC_VALIDATION: COMPLETE
+  LOSS_ALIGNED_PROXY_GATE_V3: PASS
+  PRIMARY_TRAINING_PROXY: full_template_span
+  EFFICIENCY_PROXY: answer_only
+  TARGET_4090_ENV_VALIDATED: true
+  smoke_hardware: rented_single_rtx4090_48gb
+  smoke_preconditions: results/phase1/phase1_plan.md section 12.1
+  formal_preconditions: results/phase1/phase1_plan.md section 12.2
+
+hard_decision_point:
+  date: "2026-08-25"
+  rule: results/phase1/phase1_plan.md section 15
+
+confirmation_split:
+  source: data/processed/relation_pair_v2_diagnostic.jsonl
+  manifest: manifests/generated/dev_confirmation_split.json
+  development_rows: data/processed/relation_pair_v2_development.jsonl
+  confirmation_rows: data/processed/relation_pair_v2_confirmation.jsonl
+  development_lineage_rows: 53
+  development_lineage_scenes: 19
+  confirmation_rows_count: 447
+  confirmation_scenes: 129
+  scene_overlap_count: 0
+  invalidated_split:
+    name: "50/450 confirmation definition"
+    status: INVALIDATED_BY_SCENE_OVERLAP
+    leaked_scene: scene0051
+
+coverage_definitions:
+  eligibility_coverage: eligible_target_samples / all_target_samples
+  execution_acceptance: successfully_executed_samples / eligible_samples
+  execution_acceptance_min: 0.95
+  note: >-
+    The combined requirement "pool acceptance >= 0.90 AND modified area <=
+    0.35" is retired. The formal locality cap is frozen exactly once after the
+    read-only support audit and may not be tuned against model outputs.
+
+operator_family_v2_pixel:
+  status: candidate_under_support_audit
+  main: pixel_pair_slot_swap
+  null_1: canonical_resampling_return
+  null_2: genuine_irrelevant_pair_swap
+  controls: [compact_pair_hflip, compact_pair_vflip_same_support_control]
+  canonical_noop: canonical_noop
+  support_definition: union of the A and B object boxes in pixels
+  scope: pure left/right only; diagonal relations require a separate audit
+  gate_statistics:
+    g_res: s(I_swap) - s(I_resampling) on mutually accepted eligible samples
+    g_robust: >-
+      s(I_swap) - max(s(I_resampling), s(I_irrelevant)) on samples accepted
+      by all three branches
+  progression_requirements: results/phase1/phase1_plan.md section 6.3
+
+reward_audit_identity:
+  current_16_group_status: preliminary_left_right_diagnostic_evidence
+  formal_500_group_preconditions:
+    - main operator family frozen
+    - legal relation mapping frozen
+    - RelationPair-v3 scene-level split completed
+    - dedicated saturation-audit manifest frozen
+
+confirmation_gate_447:
+  authorized: true
+  authorized_on: "2026-08-20"
+  authority: results/phase1/phase1_plan2.md
+  primary_statistic: G_res_scene_bootstrap_lcb95
+  primary_endpoint: >-
+    LCB95 of scene-level bootstrap E[G_res] > 0, where
+    G_res = s(I_swap) - s(I_resampling) on mutually accepted eligible rows
+  cd_policy: >-
+    A+ policy: genuine C/D keeps its frozen selection rule; runs where
+    available; if fewer than ~25 independent scenes remain, G_robust is
+    reported as NOT ESTIMABLE and no context-mismatch-exclusion claim is made
+  secondary_endpoints:
+    - execution_acceptance_on_eligible_min_0_95
+    - dca_swap_greater_than_dca_resampling_with_positive_scene_bootstrap_ci
+    - resampling_null_factual_retention_and_no_systematic_mapped_rise
+    - directional_decomposition_original_down_and_mapped_up
+    - support_stratification_lt2_2to4_ge4_consistency_and_scene_influence
+  support_strata: ["lt2", "2_to_lt4", "ge4"]
+  bootstrap_seed: 20270818
+  bootstrap_resamples: 10000
+  no_interim_inspection: true
+  no_threshold_retuning_after_failure: true
+  reserve_invisible: true
+
+analysis_integrity_v2:
+  status: preregistered
+  amendment_id: analysis_integrity_and_diagonal_disambiguation_20260820
+  influence_estimator: >-
+    scene-weighted mean of per-scene G_res for both the full estimate and
+    every leave-one-scene/family-out estimate; row-weighted means are
+    reported only as explicitly labeled descriptive statistics
+  legal_recompute_rule: >-
+    old readout artifacts are never modified; v2 outputs are new files
+    (analysis_contract_v2.json, *_v2.json, reconciliation report); input
+    JSONL hashes must equal the old artifacts; the new script hash is
+    pinned; the confirmation contract hash is verified; shared endpoints
+    must reconcile item by item; if only influence values change the old
+    influence numbers are marked superseded and gates stand; any material
+    change to primary endpoints pauses all downstream work
+  metric_naming:
+    eligibility_coverage: eligible_rows / all_rows
+    runtime_completion_rate_among_eligible: executed / eligible (code sanity only)
+  power_analysis_wording: >-
+    The subsampling analysis demonstrates stability of the observed operator
+    signal under scene subsampling; it is not prospective power for
+    post-training benchmark gains.
+
+diagonal_composition_gate:
+  status: preregistered
+  supersedes_scope_of: diagonal_compatibility_gate (binary result retained)
+  population: the same 335 eligible viewed diagonal rows over 86 scenes
+  candidates:
+    r00: original relation (h, d)
+    r10: horizontal-only flip (-h, d)
+    r01: depth-only flip (h, -d)
+    r11: full point reflection (-h, -d)
+  scoring: >-
+    length-normalized log-likelihood over the question's own four relation
+    options; if a question lacked the vocabulary a fixed canonical template
+    would be used and folded into the proxy audit; the released diagonal
+    option sets already contain all four relations
+  branches: [factual, pixel_pair_slot_swap, canonical_resampling_return]
+  statistics:
+    M_full_swap: l_swap(r11) - max(l_swap(r00), l_swap(r10), l_swap(r01))
+    G_H: "[l_swap(r11)-l_swap(r01)] - [l_null(r11)-l_null(r01)]"
+    G_D: "[l_swap(r11)-l_swap(r10)] - [l_null(r11)-l_null(r10)]"
+  criteria:
+    - G_H scene-bootstrap LCB95 > 0
+    - G_D scene-bootstrap LCB95 > 0
+    - r11 four-candidate top-1 rate under swap significantly above null
+    - G_D positive for both diagonal families, ideally each CI excluding 0
+    - r00 remains the main answer under the null
+    - no domination by one family or few scenes
+  fail_rule: >-
+    if horizontal passes but depth fails, the diagonal mapping may not enter
+    training; axis-only training on 23 rows is prohibited; the lawful
+    branches are pausing formal training or redesigning a horizontal-only
+    operator for a later window
+  wording_until_pass: >-
+    binary point-inversion compatibility was confirmed; component-wise
+    disambiguation remains pending
+
+dual_query_secondary_control:
+  status: preregistered_execution_ordered
+  design: >-
+    On the identical edited image, the original question (A relative to B)
+    expects the mapped relation after swap and the original relation under
+    null; the dual question (B relative to A, entity spans exchanged in the
+    frozen question template) expects the original relation after swap and
+    the swap-mapping inverse under null
+  reports:
+    - per-question DCA for both directions
+    - joint consistency probability
+    - cycle consistency
+    - swap-minus-null differences
+    - axis and diagonal reported separately
+    - candidate token ids recorded
+  role: secondary consistency evidence; never replaces the composition gate
+
+distortion_robustness_gate:
+  status: preregistered
+  timing: before the final split freeze
+  population: 291 axis confirmation rows (recorded geometry + changed pixels)
+  covariates:
+    - source-to-target width scale
+    - height scale
+    - area scale
+    - aspect distortion
+    - A/B size ratio
+    - actual changed-pixel ratio
+    - token support
+    - union area
+  analyses:
+    - scene-bootstrap tertile strata
+    - lowest-distortion 50 percent subset
+    - scene-clustered regression of G_res on distortion/support/union/ratio
+    - internal replication of compact H minus V from frozen run artifacts
+  labeling: post hoc robustness analysis, reported as such
+  keep_operator_rules:
+    - low-distortion 50 percent subset G_res strictly positive
+    - main distortion strata directionally consistent
+    - internally replicated compact H-V CI strictly above 0
+  must_revise_rules: >-
+    if only high-distortion rows carry the effect: preregister stricter
+    training-time distortion eligibility from metadata only and re-audit
+    capacity, or add a stronger cross-resize-return null on viewed lineage;
+    thresholds may never be tuned against the 52-row final holdout
+
+v3_contract_hardening:
+  status: preregistered_blocking_final_split
+  items:
+    - RelationPairV3 __post_init__ strict validation with fail-closed unknown fields
+    - relation/mapped consistency, letter/option-parser consistency, distinct letters
+    - box legality, composite key uniqueness, equal x-center rejection, family legality
+    - single shared pure eligibility function for all data-layer audits and manifests
+    - explicit scene-lineage cross-checks against raw manifests (train/replay/holdout vs viewed and each other)
+    - atomic output writes, hash-equal skip, partial-output refusal, ordered unique sample ids
+  frozen_hash_policy: >-
+    SUPERSEDED 2026-08-27 by amendment
+    asymmetric_directional_credit_revision_20260826 (integer_box_overlap added;
+    zero of 1843 candidate / 174 train rows affected; new hashes registered in
+    the amendment). Original text: "pixel_ops.base_eligibility hash stays
+    untouched; the shared function is new code"
+
+final_split_configuration:
+  status: preregistered_pending_gates
+  gate_preconditions:
+    - diagonal_composition_gate PASS
+    - distortion_robustness_gate PASS
+    - v3_contract_hardening complete
+  directional_train: {prompts: 174, scenes: 76, axis: 23, diagonal: 151}
+  exposure_scheduler:
+    axis_to_diagonal: "1:2"
+    rule: >-
+      per 3 directional slots take 1 axis and 2 diagonal; scene-uniform
+      within each class; at most one prompt per scene per cycle; the two
+      diagonal families alternate 1:1; record unique-scene exposure and
+      per-prompt repetition counts; never duplicate JSON rows
+  final_internal_holdout:
+    scenes: 8
+    prompts: 52
+    axis: 22
+    diagonal: 30
+    no_reallocation: true
+    role: single post-freeze internal check only; main evaluation stays external
+  replay_pool:
+    total: 174
+    buckets:
+      multi_view_non_counting_non_direction: 61
+      video_non_counting_non_direction: 26
+      counting_cross_modality_stratified: 26
+      other_single_image_non_counting_non_direction: 61
+    selection_priority: [counting, video_non_counting, multi_view_non_counting, single_image_non_counting]
+    exclusions: [development, confirmation, diagonal_viewed, final_holdout]
+    sampling: scene-uniform; cover distance/size/room-size/appearance-order tasks
+  total_mix: directional:replay = 1:1
+
+smoke_and_matrix_scope:
+  smoke_seeds: single frozen seed for all 50-step smoke runs
+  smoke_matrix: [continued-GRPO, vanilla CFPO, ReG-CFPO]
+  engineering_smoke: [continued-GRPO 5-20 steps, ReG-CFPO 5-20 steps, ReG-no-null 5-20 steps, exact save/resume]
+  formal_matrix_runs: 8
+  formal_seeds: {continued_grpo: 3, regcfpo: 3, vanilla_cfpo: 1, global_duality: 1}
+  step_budget_rule: >-
+    fixed only by preregistered wall-clock: 300 steps if 8 runs fit ~10-11
+    dual-GPU days, else 200 for all methods; never per-method dev tuning
+  trainer_constraints:
+    - dataset features keep boxes, mapped relation, scene, operator metadata
+    - SAT/MIX/ALL_WRONG computed after global reward gather
+    - equal auxiliary forward counts across ranks; inactive samples use weight 0, never skipped forwards
+    - auxiliary forwards use_cache=False; answer scores keep gradients
+    - one swap/null computation per prompt, not per rollout
+    - PYTHONNOUSERSITE=1; attn_implementation=sdpa explicit; Qwen config compat before load
+    - no automatic checkpoint resume; contract binds model/data/code/seed/optimizer/scheduler/RNG
+  equivalence_tests_before_training:
+    - gamma=0 ReG trainer identical to continued-GRPO in loss, policy gradient, update, and resume
+    - null-only branch produces no mapped-answer directional gradient
+    - gate behavior for SAT/MIX/ALL_WRONG and equal rank counts
+
+capacity_power_analysis:
+  status: preregistered
+  data_source: 447-row confirmation mutually accepted rows (291 rows, 107 scenes)
+  method: scene_stratified_subsampling
+  scene_candidates: [30, 40, 50, 60, 70]
+  repetitions_per_candidate: 2000
+  sampling_rule: draw scenes without replacement; keep all eligible prompts of each drawn scene
+  internal_bootstrap: scene-level paired bootstrap within each subsample
+  bootstrap_seed_derivation: seed = base_seed 20270818 + repetition_index
+  success_criteria:
+    p_lcb95_gres_gt_0_min: 0.95
+    p_dca_swap_gt_null_min: 0.95
+  scope_limitation: >-
+    This analysis certifies how many scenes stably carry the auxiliary
+    directional signal; it does not certify benchmark-gain sample sizes,
+    which still require training seeds and external evaluation.
+  feasibility_floor:
+    directional_train_prompts_min: 160
+    independent_train_scenes_min: 60
+    relation_family_coverage: required
+    replay_ratio: "1:1"
+  stop_rule: >-
+    if the power analysis demands more scale than the released data can
+    provide, stop the no-external-data track instead of lowering the floor
+
+diagonal_compatibility_gate:
+  status: preregistered
+  authority: results/phase1/phase1_plan3.md decision 2
+  lineage: viewed diagnostic scenes only (no unseen scene consumption)
+  population: all 335 eligible viewed diagonal rows over 86 scenes
+  mapping_under_test: point_reflection (left-front<->right-back, left-back<->right-front)
+  tuning_prohibited: true
+  thresholds_unchanged: true
+  cherry_picking_prohibited: true
+  criteria:
+    - scene-bootstrap LCB95 of G_res > 0 on the full diagonal population
+    - swap DCA greater than resampling-null DCA with positive scene-bootstrap CI
+    - resampling-null factual retention high
+    - directional decomposition original down and mapped up
+    - both relation families (LF/RB and LB/RF) have positive mean effects
+    - effect not dominated by one family or few scenes
+  pass_consequence: diagonal rows may enter the training pool
+  fail_consequence: >-
+    axis-only unseen capacity (45 eligible rows) cannot support the ICLR
+    training track without external data; stop or defer to a later window.
+    Selecting only the better family post-hoc is prohibited unless that
+    branch was separately preregistered beforehand.
+
+reserve_reallocation:
+  status: preregistered
+  trigger: after diagonal compatibility gate passes
+  amendment_id: reserve_reallocation_after_operator_confirmation
+  metadata_only_inputs:
+    - scene_id
+    - relation_family
+    - eligible_prompt_count
+    - axis_or_diagonal
+    - token_support
+    - box_size_ratio
+    - union_area
+  model_outputs_used: false
+  constraints:
+    final_internal_holdout_scenes_min: 8
+    final_internal_holdout_scenes_target: 10
+    final_internal_holdout_eligible_prompts_min: 30
+    final_internal_holdout_eligible_prompts_target: 40
+    holdout_covers_axis_and_diagonal: true
+    holdout_covers_support_strata: true
+  released_to_train_pool: remaining unviewed reserve scenes
+  algorithm: deterministic greedy or integer program with frozen seed; hash frozen
+
+saturation_audit_two_report_design:
+  status: preregistered
+  runs:
+    training_distribution:
+      population: final directional training prompts
+      purpose: difficulty/stratum labels for sampler and saturation-aware gate
+      leakage_status: none (training-sample stratum annotation)
+    confirmation_distribution:
+      population: the 291 operator-confirmation eligible prompts
+      purpose: off-training saturation replication on never-trained scenes
+  config: G=4, official generation config, fixed generation seeds, accuracy and format rewards separated
+  reporting: SAT rates must be reported separately per distribution, never pooled
+
+training_hyperparameter_calibration:
+  status: CORRECTED_MEAN_SCORE_CALIBRATION_FROZEN
+  provenance:
+    margins_m_m0: >-
+      1.0 in log-odds units (one nat of likelihood ratio between mapped and
+      original / null-violation anchor); scale consistent with the observed
+      G_res magnitudes (+4.3 axis confirmation, +4.9 train-directional)
+    weight_clip: 4.0 per plan.md section 1.1
+    epsilon: 1e-6 per plan.md section 1.1
+    gamma_lambda_null: >-
+      Corrected mean-score calibration frozen 2026-08-26 using engineering
+      gradients only: ReG gamma=0.0176 with lambda_null=0.5; local
+      non-directional gamma=0.0104 with lambda_null=0.  Both values target an
+      auxiliary/policy pre-clip gradient ratio of about 0.30.  The historical
+      sum-score gamma=0.005 is superseded and remains provenance only.
+  calibration_plan:
+    - engineering smoke logs L_dir, L_null, GRPO policy loss, w_tilde mean,
+      clip-hit fraction, and auxiliary forward counts at every step
+    - gamma initialized so the auxiliary mass is 10-30 percent of the
+      per-token GRPO objective at step 0
+    - lambda_null initialized at 0.5 and coarsely swept only on the 5-20
+      step engineering runs
+    - final gamma/lambda frozen before the 50-step scientific smoke and
+      never tuned against dev accuracy
+  calibration_outcome: >-
+    FROZEN 2026-08-26 before corrected 50-step training.  A deterministic
+    train-only 20-row calibration manifest (8 SAT, 8 MIX, 4 ALL_WRONG; no dev
+    accuracy) produced policy gradients on 2/20 steps.  At gamma=1, ReG and
+    local auxiliary/policy ratios were 17.0848 and 28.7542; the frozen values
+    gamma_reg=0.0176 and gamma_local=0.0104 map them to about 0.30.
+    lambda_null=0.5 for ReG, m=m0=1.0, uniform family scheduling,
+    directional:replay=1:0, checkpoint selection=final, train seed=1234 and
+    the existing frozen evaluation seeds remain unchanged.  Reports:
+    runs/phase1_score_mean_v2_4090/e2_stratified/*_calibration_readout.json.
+  c_loc_c_op_policy: >-
+    caller premultiplies locator confidence and operator reliability into the
+    raw gate credits; for the GT-box Stage-4 configuration both are 1.0
+
+answer_proxy_gate_v2:
+  source_lineage: viewed development/confirmation rows only (no new scenes)
+  sample_size_target: 200
+  comparison_arms:
+    - answer-only single letter
+    - full option text
+    - full-template teacher-forced answer span
+    - full CoT rollout frequency
+  thresholds: {factual_top1_min: 0.90, sign_agreement_min: 0.85, spearman_min: 0.80}
+  fallback_on_failure: auxiliary loss uses full-template answer-span scores
+
+locator_policy_v2:
+  training_time_operands: SpatialLadder Stage-1 grounding annotations as privileged boxes
+  rationale: >-
+    Boxes are part of the released curriculum, not external data; they are
+    used only to generate training-time counterfactuals; the final model
+    needs no boxes or locator at test time.
+  theta0_self_locator_role: ablation and replaceability note only; does not block smoke
+
+relation_pair_v3:
+  status: protocol_preregistered
+  authority: results/phase1/phase1_plan.md section 8; phase0_suggestion PART 2
+  relations_axis: [left, right]
+  relations_diagonal: [left-front, right-front, left-back, right-back]
+  relations_excluded: [front, back]
+  exclusion_reason: >-
+    pure front/back have no horizontal component and depth cannot be
+    manipulated by a 2D box swap
+  swap_mapping_rule: point_reflection_of_center_offsets
+  swap_mapping:
+    left: right
+    right: left
+    left-front: right-back
+    right-back: left-front
+    left-back: right-front
+    right-front: left-back
+  mapping_status_axis: validated_by_confirmation_gate
+  mapping_status_diagonal: hypothesis_requiring_unseen_scene_validation
+  diagonal_validation:
+    design: >-
+      frozen pixel operator graph run on a newly drawn development subset
+      from never-viewed base scenes only; criterion LCB95 of scene-bootstrap
+      G_res > 0 before diagonal rows may enter any training manifest
+    consumes_new_scenes: true
+  data_rules:
+    join_key: [question_id, image, data_type]
+    join_key_unique_hard_assertion: true
+    x_center_equal_policy: explicit_reject_relation_undefined
+    entity_span_rule: boundary-aware unique non-overlapping spans (v2 rule)
+    scene_key: strip_trailing_trajectory_suffix
+  split_policy:
+    viewed_scenes_definition: >-
+      every base scene whose model outputs have ever been inspected is
+      development lineage and can never enter formal train/test
+    viewed_scenes_current: 148 diagnostic base scenes
+    one_shot_freeze: true
+    targets: train 800-1000 operator-valid prompts and >= 250 train scenes
+    shortfall_policy: >-
+      if targets are unreachable, adjust only via a documented power-analysis
+      amendment; never reuse viewed scenes and never silently loosen filters
+
+secondary_control_dual_query:
+  status: preregistered
+  definition: >-
+    For the identical swapped image, the original question asks A relative to
+    B and expects the mapped relation, while the dual question asks B relative
+    to A and expects the original relation. Agreement of both directions on
+    the same edited image evidences object-identity and relation reading
+    rather than an undirected response to visual disruption.
+  role: secondary robustness control; cannot replace the resampling null
+  applies_to: confirmation re-analysis and training-time diagnostics
+
+upstream:
+  repository: "https://github.com/ZJU-REAL/SpatialLadder.git"
+  commit: "7a0d2ee85c28728835300310a349a53a15967f2e"
+  model_id: "hongxingli/SpatialLadder-3B"
+  dataset_id: "hongxingli/SpatialLadder-26k"
+  transformers: "4.49.0"
+  attention_backend_phase1: sdpa
+
+reproducibility:
+  generation_seeds: [1701, 1702, 1703, 1704]
+  diagnostic_selection_seed: 20270818
+  bootstrap_seed: 20270818
+  bootstrap_resamples: 10000
+  group_size: 4
+  max_completion_length: 1024
+  generation_temperature: 1.0
+  generation_top_p: 1.0
+  generation_top_k: 50
+  generation_repetition_penalty: 1.0
+  generation_use_cache: true
+  generation_config_policy: explicit_fresh_transformers_generation_config_matching_pinned_stage3
+  statistics_dtype: float32
+  scene_disjoint_required: true
+
+relation_pair_v2:
+  modalities: [single_image]
+  question_types: [relative direction]
+  relations: [left, right]
+  option_relation_parse_rate_min: 0.98
+  mapped_answer_unique_rate_min: 1.0
+  gt_box_diagnostic_min: 500
+  potential_train_min: 1000
+  scene_key_policy:
+    source_directory_pattern: '^scene[0-9]+_[0-9]+$'
+    split_unit_pattern: '^scene[0-9]+$'
+    rule: strip_trailing_trajectory_suffix
+
+locator_gate:
+  dual_entity_parse_rate_min: 0.85
+  pair_recall_iou_0_5_min: 0.70
+  max_rebuilt_stage1_recall_gap: 0.05
+  min_fraction_of_gt_directional_gap: 0.75
+
+operator_gate:
+  mean_robust_gap_must_be_positive: true
+  scene_bootstrap_ci_must_exclude_zero: true
+  context_null_original_retention_min: 0.85
+  context_null_original_retention_target: 0.90
+  modified_visual_token_ratio_max: 0.35
+  require_no_systematic_irrelevant_mapped_shift: true
+  require_entropy_explanation_rejected: true
+
+answer_proxy_gate:
+  factual_top1_agreement_min: 0.90
+  swap_null_sign_agreement_min: 0.85
+  spearman_rho_min: 0.80
+
+training_smoke_gate:
+  steps: 50
+  require_no_nan: true
+  require_no_reward_collapse: true
+  max_regcfpo_to_grpo_step_time_target: 1.8
+  mitigation_trigger_ratio: 2.2
+
+amendments:
+  - id: loss_aligned_proxy_amendment_20260822
+    recorded_at: "2026-08-22T06:30:00Z"
+    type: proxy_gate_metric_clarification_and_prospective_confirmation
+    changes_thresholds: true
+    authority: results/phase1/phase1_plan5.md
+    reason: >-
+      User decision A-prime: metric-clarification amendment plus a new G=16
+      prospective confirmation, instead of post-hoc acceptance of the
+      answer-only arm. ANSWER_PROXY_GATE_V2=FAIL is permanently retained
+      (artifact reports/generated/gate_readout_answer_proxy_v2.json,
+      schema_version 2 with midrank Spearman): the
+      preregistered rho>=0.80 four-candidate Spearman criterion is
+      ceiling-limited under G=4 references (with one-hot-with-ties frequency
+      vectors the maximum attainable midrank Spearman is 3/sqrt(15) =
+      sqrt(3/5), about 0.7746; notation corrected from the original
+      "sqrt(3/15)" typo on 2026-08-22, value unchanged), so it is recorded
+      as CEILING_LIMITED / NOT VALIDLY ESTIMABLE
+      rather than a method failure, and the swap-branch sign shortfall
+      (0.845 vs 0.85) is driven by rollout-reference tie rows that carry no
+      directional signal. The new LOSS_ALIGNED_PROXY_GATE_V3 re-targets the
+      gate at what the auxiliary loss actually consumes - the two-candidate
+      mapped-vs-original log-odds fidelity - and is frozen in full BEFORE the
+      G=16 run starts; if V3 fails, no metric or threshold may be modified
+      again. The four-candidate Spearman survives only as descriptive
+      distribution-fidelity reporting (raw, empirical ceiling,
+      ceiling-normalized, top-1-in-rollout-argmax-set). full_option_text is
+      retired as a formal candidate arm and kept only as historical record.
+    v2_permanent_record:
+      gate: ANSWER_PROXY_GATE_V2
+      status: FAIL
+      artifact: reports/generated/gate_readout_answer_proxy_v2.json
+      superseded_artifact: reports/generated/gate_readout_answer_proxy.json
+      invalidated_first_run: runs/invalidated_answer_proxy_rollout_counting_bug/
+      four_candidate_spearman_criterion: CEILING_LIMITED_NOT_VALIDLY_ESTIMABLE
+      note: >-
+        The V2 failure is preserved as written; no retrospective relabeling.
+        Tie-aware reanalysis and midrank Spearman recomputation are descriptive
+        sensitivity evidence only and do not alter the V2 verdict.
+    loss_aligned_proxy_gate_v3:
+      status: PASS
+      status_corrected_20260827: true
+      cohort:
+        manifest: manifests/v3_final/v3_directional_train.jsonl
+        rows: 174
+        scenes: 76
+        composition: axis 23 + diagonal 151
+        rationale: >-
+          The frozen directional train cohort is the exact distribution the
+          proxy will serve; scoring-method validation on train data is not
+          test leakage; the 8-scene final holdout stays untouched; the viewed
+          200-row proxy cohort is not reused as the confirmation set because
+          the new metric design was informed by its results.
+      rollout_reference:
+        branches: [pixel_pair_slot_swap, canonical_resampling_return]
+        num_generations: 16
+        seeds: [1701, 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1709, 1710,
+                1711, 1712, 1713, 1714, 1715, 1716]
+        generation_config: >-
+          official Stage-3 identity (temperature 1.0, top_p 1.0, top_k 50,
+          repetition_penalty 1.0, do_sample true, max_new_tokens 1024)
+        prompt: official CoT template, byte-identical to the saturation audit path
+        factual_branch: >-
+          reuses the dual-cohort saturation G=4 results for the same 174
+          prompts only after per-row byte-identity verification of prompt and
+          generation contract; if any row mismatches, the factual branch is
+          regenerated at the same G, never approximately reused
+        smoothed_log_odds: "Delta_rollout = log((n(y_cf) + 0.5) / (n(y) + 0.5))"
+        sign_correction: >-
+          plan5 section 3.3 originally wrote the ratio inverted; the frozen
+          definition maps higher n(y_cf) to positive Delta_rollout, matching
+          Delta_proxy = logp(y_cf) - logp(y)
+      proxy_scores:
+        definition: "Delta_proxy = logp(y_cf) - logp(y)"
+        arms: [answer_only, full_template_span]
+        retired_arms: [full_option_text]
+      gates:
+        A_completion: >-
+          answered_fraction >= 0.95 per newly generated branch; format success
+          and truncation reported separately
+        B_factual_fidelity: factual top-1 agreement >= 0.90
+        C_tie_aware_directional: >-
+          conditional on Delta_rollout != 0: swap >= 0.90 and null >= 0.95;
+          tie rows (exactly equal n(y_cf) and n(y)) are always reported
+          separately (swap/null tie rates, proxy |delta| on tie vs non-tie
+          rows), never silently dropped
+        D_loss_aligned_correlation: >-
+          primary gate on the swap branch: scene-aggregated Spearman - average
+          Delta_proxy and Delta_rollout within each scene, then Spearman over
+          the 76 scene-level points - must be >= 0.80, AND its scene bootstrap
+          (resample scenes with replacement, re-aggregate, percentile method)
+          LCB95 must be > 0.70; the row-level Spearman is descriptive only;
+          the null branch is not gated on correlation (its reference delta is
+          near-constant) and is judged by gate C plus factual-answer retention
+        E_four_candidate_spearman: >-
+          descriptive only (raw, empirical ceiling, ceiling-normalized,
+          top-1-in-rollout-argmax-set); does not decide training authorization
+      stratification: >-
+        frozen as overall, axis, diagonal, LF_RB, LB_RF; overall is the primary
+        criterion; no relation family may show a reversed direction; axis
+        (n=23) is reported standalone (sign, tie rate, correlation) without a
+        bootstrap LCB requirement
+      arm_selection_rule: >-
+        frozen before viewing G=16 results: if full_template_span passes V3,
+        the training proxy is full_template_span and answer_only becomes an
+        efficiency ablation; elif full_template_span fails and answer_only
+        passes, the training proxy is answer_only; else STOP. Numerical
+        superiority observed after viewing results may not override this
+        priority.
+      failure_rule: no further metric or threshold modification after a V3 failure
+      holdout_rule: the 8-scene final holdout remains completely unseen
+      parallel_work: >-
+        during the G=16 run, static trainer vendor integration, the training
+        environment build, and equivalence-test authoring may proceed, but no
+        optimizer step is run and all training authorizations stay false
+    evidence:
+      - results/phase1/phase1_plan5.md
+      - reports/generated/gate_readout_answer_proxy_v2.json
+      - reports/answer_proxy_gate_decision.md
+  - id: analysis_integrity_and_diagonal_disambiguation_20260820
+    recorded_at: "2026-08-20T14:00:00Z"
+    type: analysis_integrity_and_gate_expansion
+    changes_thresholds: true
+    authority: results/phase1/phase1_plan4.md
+    reason: >-
+      External review adopted. The final v3 split freeze is withheld until
+      three gates clear: (1) analysis integrity revision - scene-weighted
+      influence estimator, pinned v2 readout script with contract-hash
+      verification, legal recompute into new v2 artifacts with item-by-item
+      reconciliation of shared endpoints, and corrected metric naming; (2)
+      diagonal composition gate - four-candidate decomposition proving the
+      full point reflection beats both component-only flips via G_H and G_D
+      with scene-bootstrap LCBs above zero, plus the preregistered dual-query
+      secondary control sharing the same run; (3) distortion robustness -
+      post hoc stratification, low-distortion subset, scene-clustered
+      regression, and internal replication of compact H-minus-V. The v3 data
+      contract is hardened (strict RelationPairV3 validation, single shared
+      eligibility function, scene-lineage assertions, atomic outputs) before
+      any split freeze. The split configuration (174/76 train, 1:2 exposure
+      scheduler, 8-scene holdout, four-bucket replay 61/26/26/61, 1:1 mix)
+      and the smoke/formal matrix scoping are preregistered but take effect
+      only after the gates pass. Axis-only training on 23 rows is prohibited;
+      power-analysis wording is downgraded to subsampling stability.
+    evidence:
+      - results/phase1/phase1_plan4.md
+  - id: capacity_diagonal_reserve_revision_20260820
+    recorded_at: "2026-08-20T08:00:00Z"
+    type: capacity_and_protocol_revision
+    changes_thresholds: true
+    authority: results/phase1/phase1_plan3.md
+    reason: >-
+      User decisions on capacity, diagonal validation, and reserve handling.
+      The 800-1000 prompt capacity target is replaced by a scene-stratified
+      power analysis on the 447-row confirmation data plus a feasibility
+      floor (>=160-180 directional prompts, >=60 scenes, family coverage,
+      1:1 replay). The diagonal point-reflection mapping is tested by a
+      no-tuning compatibility audit on all 335 eligible viewed diagonal rows
+      (no unseen-scene consumption). The Phase-1 reserve is reallocated at
+      metadata level only after the diagonal gate passes, keeping an 8-10
+      scene internal holdout and releasing the rest to the train pool. The
+      saturation audit becomes a two-report design (training distribution
+      plus confirmation-distribution replication, never pooled). The answer
+      proxy stays a hard gate on viewed rows; the training-time locator is
+      the released Stage-1 grounding annotations, with the theta0
+      self-locator demoted to an ablation. Paper claims must say
+      directional / resampling-calibrated counterfactual credit, never pure
+      or context-mismatch-free causal intervention.
+    evidence:
+      - results/phase1/phase1_plan3.md
+      - reports/generated/relation_pair_v3_capacity_audit.json
+  - id: relation_pair_v3_protocol_20260820
+    recorded_at: "2026-08-20T06:00:00Z"
+    type: data_protocol_preregistration
+    changes_thresholds: false
+    authority: >-
+      results/phase1/phase1_plan.md section 8; results/phase1/phase1_plan2.md
+      section 10; phase0_suggestion PART 2 capacity analysis
+    reason: >-
+      After the pixel confirmation gate passed, the training manifest must be
+      rebuilt as RelationPair-v3 with the point-reflection swap mapping for
+      diagonal relations, the composite join key, explicit rejection of equal
+      x-centers, a one-shot scene-level freeze excluding all viewed scenes,
+      and the same-edit dual-query secondary control. Diagonal rows may enter
+      training manifests only after unseen-scene validation of the diagonal
+      mapping.
+    evidence:
+      - reports/pixel_confirmation_gate_decision.md
+      - reports/generated/capacity_and_cd_relaxed_audit.json
+  - id: confirmation_authorization_20260820
+    recorded_at: "2026-08-20T04:00:00Z"
+    type: confirmation_gate_authorization
+    changes_thresholds: false
+    authority: results/phase1/phase1_plan2.md
+    reason: >-
+      User decision A-plus: freeze the pixel operator family and statistics
+      contract as implemented on the development lineage, authorize the
+      one-shot 447-row confirmation gate with G_res as the sole primary
+      statistic, keep genuine C/D on its frozen rule with G_robust reported
+      subset-only or NOT ESTIMABLE, and make no context-mismatch-exclusion
+      claim. Training and migration authorizations remain false; this
+      amendment authorizes inference-only confirmation. B-lite relaxed C/D
+      matching and the 701-row capacity audit run in parallel as read-only
+      evidence that cannot alter the confirmation gate.
+    evidence:
+      - results/phase1/phase1_plan2.md
+      - results/phase1/phase1_result.md
+      - runs/pixel_operator_diagnostic/dev53.summary.json
+  - id: pixel_operator_revision_20260820
+    recorded_at: "2026-08-20T02:10:00Z"
+    type: operator_control_graph_revision
+    changes_thresholds: true
+    authority: results/phase1/phase1_plan.md
+    reason: >-
+      Phase-0 latent position/content operators failed the causal-effect gate
+      while the global-hflip positive control passed. The revision moves the
+      main intervention to pixel space (Pixel Pair-Slot Swap with Canonical
+      Resampling Return and Genuine Irrelevant-Pair Swap controls), retires
+      the combined 90 percent pool-acceptance plus 35 percent area
+      requirement in favor of separated eligibility coverage and execution
+      acceptance, corrects the 50/450 split to a scene-disjoint 53/447
+      development/confirmation lineage, demotes Pair-ROI H/V to a
+      compact-pair diagnostic upper bound, adopts two-stage training
+      authorization, and updates the canonical deadline schedule.
+    invalidated_definitions:
+      - "50/450 confirmation split (INVALIDATED_BY_SCENE_OVERLAP)"
+      - "latent position-slot and 2D content-slot as main operator candidates"
+      - "combined pool acceptance >= 0.90 and modified area <= 0.35 requirement"
+    evidence:
+      - results/phase1/phase1_plan.md
+      - reports/phase1_gate_decision.md
+      - manifests/generated/dev_confirmation_split.json
+  - id: base_scene_key_correction_20260818
+    recorded_at: "2026-08-18T11:10:19Z"
+    type: data_identity_bugfix
+    changes_thresholds: false
+    reason: >-
+      Released sceneNNNN_TT directories are camera trajectories/views of the
+      same base environment. The original split key retained TT and leaked 21
+      base environments across diagnostic/reserve.
+    invalidated_runs:
+      - 20260818T104924Z_frozen_operator_diagnostic_limit50_v1
+      - 20260818T105648Z_reward_saturation_prelim_1024_limit16
+    evidence: reports/scene_key_incident.md
+  - id: explicit_stage3_generation_config_20260818
+    recorded_at: "2026-08-18T11:48:07Z"
+    type: generation_identity_bugfix
+    changes_thresholds: false
+    reason: >-
+      Passing generation kwargs without an explicit GenerationConfig caused
+      Transformers 4.49 to inherit repetition_penalty=1.05 and use_cache=false
+      from the checkpoint. The pinned Stage-3 trainer constructs a fresh
+      GenerationConfig, whose corresponding defaults are 1.0 and true.
+    invalidated_runs:
+      - 20260818T113501Z_reward_saturation_base_scene_1024_limit16_v2
+    evidence: records/run_metadata/20260818T113501Z_reward_saturation_base_scene_1024_limit16_v2_invalidated.json
+  - id: asymmetric_directional_credit_revision_20260826
+    recorded_at: "2026-08-27T04:30:00Z"
+    type: objective_function_revision_and_diagnostic_training_authorization
+    changes_thresholds: true
+    authority: results/phase1/phase1_plan7.md (revision R1, 2026-08-27)
+    reason: >-
+      The corrected mean-score 50-step E3 smoke stopped on the ninth
+      preregistered hard gate (targeted_dev_metric_positive; 8/9 passed) and
+      the STOP verdict is permanently retained. Row-paired decomposition of
+      the frozen 291-row E3 artifacts shows the +0.0439 mean-unit G_res gain
+      decomposes into +0.00668 (15.2%) from s_swap rising and +0.03719
+      (84.8%) from s_null being pushed further down, with d_s_fact=-0.03753
+      almost identical to d_s_null=-0.03719 and a net s_swap>0 flip count of
+      -1: the symmetric DiD + null-pushing objective learned to suppress the
+      mapped answer on non-swap inputs instead of steering swap inputs
+      toward it. All six absolute answer log-probs sank by 0.078-0.118, an
+      unmonitored failure mode. The objective form, not the pixel operator
+      or the full-template proxy, is killed. Margin hyperparameters have
+      also failed calibration twice (sum-score under-activation in E2, 0/20
+      steps; mean-score over-activation in E3, 24/50 steps harvested by the
+      null shortcut), so a permanent margin-binding precheck is instituted.
+      This amendment freezes the replacement objective (AReG-CFPO), the
+      known-confounder repairs applied symmetrically to all legs, the
+      348-step diagnostic matrix, the gates, the evaluation-protocol
+      changes, and the pre-frozen expanded setting as a launch-ready
+      contingency.
+    permanent_verdicts:
+      E3_MEAN_SCORE_50STEP: STOP_IMMUTABLE
+      ORIGINAL_DID_NULL_OBJECTIVE: KILL
+      killed_objective_note: >-
+        The regcfpo spec (symmetric DiD L_dir=[m-(s_swap-s_null)]+ plus
+        null-pushing L_null=[m0+s_null]+, lambda_null=0.5) is retained in
+        code and in prior frozen calibration records solely to reproduce
+        historical runs; it may not be trained again.
+    gradient_path_decomposition:
+      verdict: RESOLVED_NULL_SHORTCUT
+      artifact: reports/generated/e3_gradient_path_decomposition_v1.json
+      artifact_sha256: "499ebb8778f890d71dddca947a78568a6867e10a2bd05108857237ecf1bb2393"
+      script: scripts/gradient_path_decomposition.py
+      reconciliation_report: reports/e3_gradient_path_reconciliation.md
+      registered_frozen_endpoints: >-
+        d_s_swap, d_s_null, d_s_fact, the net s_swap>0 flip count, and the
+        six absolute log-prob deltas are registered as frozen endpoints
+        consumed by the mechanism composition gate below.
+    margin_binding_precheck:
+      verdict: PASS
+      artifact: reports/generated/margin_binding_precheck_areg_v1.json
+      artifact_sha256: "2e5ef981b3c57ad703fd2ee0b8d7d05f7190d44c03472ac24d598b86164ee51d"
+      script: scripts/margin_binding_precheck.py
+      frozen_candidate_binding:
+        absolute_arm_dominance: 0.511
+        did_arm_dominance: 0.489
+        l_swap_activation: 0.747
+      percentile_method_note: >-
+        Distribution percentiles use numpy method="lower" (floor index), the
+        convention under which the plan7 R1 reference table reproduces; the
+        pure-absolute-arm attainability columns and the composite-t_i
+        activation columns are both archived and explicitly labeled.
+      permanent_clause: >-
+        Any future hinge/margin hyperparameter must, before being written
+        into this prereg, produce a binding table on the theta0 frozen
+        cohort: per-hinge activation, per-branch dominance of composite
+        targets, attainability vs the current distribution, and explicit
+        score-convention vs margin-unit reconciliation. Every loss component
+        claimed active must bind on [10%, 95%] of samples; out-of-range
+        components must be re-calibrated or explicitly demoted to
+        report-only. No waiver is permitted on interpretability grounds.
+    single_scientific_variable: >-
+      Gradient routing of the directional credit: from symmetric DiD +
+      null-pushing to null-detached, swap-only gradient with theta0 anchors.
+      Attribution between AReG-CFPO and continued-GRPO rests on the control
+      leg receiving the same confounder repairs.
+    confounder_repairs_applied_to_all_legs:
+      - "beta: 0.0 -> 0.01 (verified against vendor/SpatialLadder/VLM-R1/run_scripts/run_spld_stage1_2_cs_stage3.sh, which passes --beta 0.01; the project-local train_stage4.py default 0.0 was an undiscussed deviation)"
+      - "directional:replay 1:0 -> 1:1"
+      - "MIX credit: batch-mean normalization -> closed-form k/G table (batch-independent)"
+      - "step budget 50 -> 348 (one full balanced cycle over 174 directional + 174 replay at one prompt group per step)"
+      - "single seed -> two screening seeds {2001, 2002}; confirmatory seeds {3001, 3002, 3003} reserved and disjoint"
+    not_introduced_this_round:
+      - pixel context-matched null (parallel frozen diagnostic on viewed lineage only)
+      - training pool expansion to 845 (pre-frozen below; launch-gated)
+      - multiple prompt groups per optimizer step
+      - think-prefix scoring (fallback option inside branch B, ahead of rollout-level)
+    areg_cfpo_objective:
+      name: AReG-CFPO (Asymmetric Relation-Grounded Counterfactual Policy Optimization)
+      score_unit: total_nats
+      score_unit_note: >-
+        All auxiliary scores and margins are total nats over the 7-token
+        full_template_span (s_tilde = 7 * s_mean). This is a deterministic
+        linear rescale of the V3-validated proxy: rankings, signs, and gate
+        correlations are unchanged; no proxy re-run was required.
+      objective_registration: >-
+        New registration areg_cfpo in src/regcfpo/training/objectives.py with
+        branches (factual, swap, null) and forwards_per_group = 6; the
+        killed regcfpo spec is left untouched for historical reproduction.
+        E0.2 gamma=0 equivalence and E0.3 gate cases are re-run under the
+        6-forward configuration before any training.
+      per_sample_scores:
+        s_swap: logp(mapped | I_swap) - logp(original | I_swap)
+        s_null: logp(mapped | I_null) - logp(original | I_null)
+        s_fact: logp(mapped | I_fact) - logp(original | I_fact)
+      target: t_i = max(m_s, sg[s_null_i] + m_d)
+      margins:
+        m_s: 1.0
+        m_d: 6.5
+        margin_provenance: >-
+          m_d = m_s - median_theta0[s_null] = 1.0 + 5.55, quantile-calibrated
+          against the frozen 174-row cohort and validated by the margin
+          binding precheck above (DiD-arm dominance 48.9%, L_swap activation
+          74.7%, both inside [10%, 95%]).
+      directional_loss: "L_swap = w_i * [t_i - s_swap_i]+  (null enters only through the detached target)"
+      preservation_loss: >-
+        L_pres = w_i * [ SmoothL1(s_null_i - s_null_i_0)
+        + eta * SmoothL1(s_fact_i - s_fact_i_0)
+        + eta_abs * SmoothL1(logp(y_i | I_fact) - logp_theta0(y_i | I_fact)) ]
+      reference_values:
+        fields: [s_fact_0, s_null_0, logp_fact_orig_0]
+        source: runs/answer_proxy_gate_v3/answer_proxy_v3.jsonl (per-row, total nats; all 174 rows present, token_count 7)
+        delivery: >-
+          precomputed offline, written into the directional train manifest as
+          three float columns; the merged manifest sha256 is bound into the
+          run contract; zero extra forwards at training time
+      total_loss: "L = L_GRPO + beta * KL(pi_theta || pi_theta0) + gamma * (L_swap + lambda_pres * L_pres)"
+      beta: 0.01
+      hyperparameter_calibration_rule: >-
+        gamma, lambda_pres, eta, eta_abs are calibrated only on 20-step
+        engineering runs so that ||gamma * grad L_aux|| / (||grad
+        L_policy+KL|| + eps) falls in [0.10, 0.30]; with beta=0.01 the KL
+        gradient is nonzero every step and the original plan6 loss-scale
+        criterion applies; never tuned against dev accuracy.
+      frozen_hyperparameters_20260828:
+        protocol: >-
+          20-step legs on the frozen 20-row calibration manifest (sha256
+          3bd308aa35aee3fc339596dff01751abab847a666e40a6a3d4d4000d1f5cb1bb),
+          beta=0.01, bs=4/G=4, seed 1234, gradient checkpointing, pinned
+          GPU0, --reseed-per-step; quadrature readout
+          scripts/areg_gamma_calibration_readout.py with branch-B
+          record-and-degrade reward-parity semantics (E0.2 determination
+          2026-08-28: stack-level bf16 non-determinism; both readouts PASS
+          with confidence=degraded, reward drift steps recorded therein)
+        areg_cfpo:
+          ratio_at_gamma_1: 86.0873
+          gamma: 0.00348
+          lambda_pres: 1.0
+          eta: 1.0
+          eta_abs: 1.0
+          note: gamma = 1.0 * 0.30/86.0873 (band upper edge, frozen
+            historical convention), 3 significant figures
+        local_non_directional:
+          ratio_at_gamma_1: 8.2831
+          gamma: 0.0362
+          margin_dir_nats: 7.0
+          note: gamma = 1.0 * 0.30/8.2831 (same convention)
+        reports: >-
+          reports/generated/areg_gamma_calibration_readout.json and
+          reports/generated/local_gamma_calibration_readout.json
+      mix_credit:
+        definition: "closed-form k/G lookup, G=4: {0: 0.0, 1: 1.000, 2: 0.577, 3: 0.333, 4: 1.0 (SAT)}"
+        equivalence_note: >-
+          Equals max_j [A_ij]+ / sqrt(G-1) under population std (ddof=0);
+          batch-independent by construction. gate.py group_accuracy_rewards
+          keeps its deliberate ddof=1 mirroring of the vendored trainer
+          advantage and is NOT used for credit.
+        u_shape_decision: >-
+          The credit is intentionally non-monotone in k with a discontinuity
+          at k=G (informed choice, plan7 section 1 option 1): MIX credit
+          derives from outcome-advantage strength while SAT credit marks a
+          reliable factual answer with exhausted outcome signal; the two
+          semantics are not on the same scale. The k=3 stratum is reported
+          separately in the mechanism readout.
+      first_class_monitors:
+        logged_every_step:
+          - six absolute log-probs (orig/mapped x factual/swap/null)
+          - t_i branch dominance ratio (expected 40-60% DiD arm)
+          - format reward
+          - completion_length
+          - p(<think>) at the first token after the generation prompt
+        hard_stop: >-
+          format reward drop vs theta0 exceeding 1 point within 348 steps
+          stops the leg immediately
+        think_less_teacher_forcing_risk: >-
+          Registered limitation: auxiliary branches teacher-force
+          "<answer> X </answer>" directly after the generation prompt with
+          no <think> block, a continuation that never occurs in real
+          rollouts. Monitored as above; the fallback remedy (score the
+          answer span after a canonical or self-sampled think prefix,
+          requiring one proxy consistency re-run) is staged in branch B
+          ahead of any rollout-level switch.
+    diagnostic_training_348step:
+      authorization_scope: OBJECTIVE_V2_DIAGNOSTIC_AUTHORIZED only; FORMAL_TRAINING_AUTHORIZED remains false
+      data:
+        directional: {prompts: 174, scenes: 76}
+        replay: {prompts: 174, scenes: 143}
+        ratio: "1:1"
+        steps: 348
+        steps_meaning: one full balanced cycle; each directional and replay prompt covered once in expectation
+        merged_manifest_rule: >-
+          the directional+replay merged manifest (with the three reference
+          columns on directional rows and aux weight 0 on replay rows) is
+          produced by a versioned script with lineage assertions, and its
+          sha256 is bound into the run contract before Gate R0
+        merged_manifest: manifests/v3_final/v3_areg_train_348.jsonl
+        merged_manifest_sha256: "3ea0b265ef41afe165e7083c4eb17562d1b90e8af2a356fed7f268654a99bc20"
+        merged_manifest_freeze_record: manifests/v3_final/v3_areg_train_348.freeze.json
+        merged_manifest_builder: scripts/build_areg_train_manifest.py
+      sampling:
+        axis_to_diagonal: "1:2"
+        scene_uniform: true
+        diagonal_family_alternation: "1:1"
+        replay_buckets: frozen four-bucket rule of final_split_configuration
+        exposure_rule: >-
+          deterministic exposure schedule; every manifest row is visited
+          exactly once per cycle (the vendored RepeatRandomSampler cannot
+          provide this and is replaced via the trainer_class instrumentation
+          seam). Single-cycle note: with 23 axis vs 151 diagonal rows the
+          axis:diagonal 1:2 motif is arithmetically impossible under
+          full single-cycle coverage; the frozen schedule applies the
+          [axis, diagonal, diagonal] triplet motif greedily over the first
+          69 directional slots followed by a diagonal-only tail, with 1:1
+          family alternation where supply allows (deviation documented in
+          manifests/v3_final/v3_areg_train_348.audit.json)
+        gate_r0_probe_manifest: manifests/generated/gate_r0_probe_dev53.jsonl
+        gate_r0_probe_manifest_sha256: "b7e8cf8cd9178d97a660648e2629041c711c0b7823c935de5384d4ccd0b3ea14"
+      optimization: {group_size: 4, per_device_batch: 4, lr: 1.0e-6, schedule: linear, beta: 0.01}
+      checkpoints:
+        probe_steps: [20, 50, 174, 348]
+        retention: >-
+          step-20/50/174 snapshots are weights-only probes deleted after
+          readout; full checkpoints kept only for step-20 (resume) and final
+      screening_matrix:
+        continued_grpo_replay_kl: {seeds: [2001, 2002], steps: 348}
+        areg_cfpo: {seeds: [2001, 2002], steps: 348}
+        local_non_directional: {seeds: [2001], steps: 348, margin_conversion: "7.0 nats", gamma: 0.0362}  # frozen 2026-08-28 by rule, see frozen_hyperparameters_20260828
+        mechanism_trajectory_saved_at: [20, 50, 174, 348]
+        screening_seed_policy: screening seeds are never counted toward the confirmatory three seeds {3001, 3002, 3003}
+    gates:
+      gate_r0_gradient_direction_probe:
+        timing: before any 348-step launch (2026-08-28/29)
+        protocol: >-
+          frozen stratified 20-row train-only manifest; measured after a
+          fixed 20 updates on a scene-disjoint fixed probe set
+          (data/processed/relation_pair_v2_development.jsonl, 53 rows);
+          no accuracy is inspected
+        pass_criteria:
+          - d_s_swap > 0 and accounts for >= 70% of d_G
+          - "|d_s_null| clearly smaller than d_s_swap"
+          - "|d_s_fact| near 0"
+          - null/factual anchor gradient directions as expected
+          - valid swap gradient present in both SAT and MIX groups
+          - six absolute log-prob drifts recorded and bounded; logp(y|I_fact) must not decline systematically
+          - t_i DiD-arm dominance inside 40-60% (precheck prediction interval)
+          - no NaN, format degradation, p(<think>) degradation, or memory anomaly
+        fail_action: stop immediately; do not run the full cycle
+      gate_r1_behavior_noise_floor:
+        redesigned: true
+        redesign_reason: >-
+          A Goodhart test on the old ReG-50 checkpoint has no discriminative
+          power because its TF margin never moved (d_s_swap=+0.00668 mean
+          units); behavior stasis there is a foregone conclusion, not
+          evidence of Goodharting.
+        protocol: >-
+          Base model, same 4090 and same eval code; all 174 directional
+          rows, swap/null branches at G=16, >= 3 fixed rollout seeds
+          (sets 1801-1816 and 1901-1916 extending the existing 1701-1716);
+          report mapped-majority rate, Var_seed and seed range of rollout
+          log-odds, and seed-to-seed fluctuation of TF-rollout correlation.
+        role: provides the comparison scale for the behavior gate; holds NO route-fork authority (forks are decided on 2026-09-01)
+        archival_addon: >-
+          G=16 behavior data for the old ReG-50 / Local-50 checkpoints are
+          collected in the same batch as formal evidence of zero behavioral
+          progress under the killed objective; never used prospectively.
+      hard_gates_348step:
+        mechanism_composition_gate:
+          - scene-bootstrap LCB95(d_s_swap) > 0
+          - d_s_swap / (|d_s_swap| + |d_s_null|) >= 0.70
+          - factual anchor drift not significant
+          - null anchor drift not significant
+          - swap DCA improved
+          - net positive flip count increase (not merely margin widening on already-positive rows)
+        behavior_gate:
+          - G=16 mapped-majority or rollout log-odds better than respective continued for both training seeds
+          - at least 2/3 evaluation seeds same-sign
+          - TF-rollout correlation not degraded
+        real_task_gate:
+          - at least one real metric not defined by the training operator: 3-eval-seed mean positive, >= 2/3 seeds same direction
+          - factual/replay mean degradation <= 1 point
+          - external targeted spatial benchmark shows a positive trend
+        confirmation_291_role: demoted to mechanism diagnostic; no longer the primary accuracy Go/Stop set (257/291 SAT, no headroom)
+    evaluation_protocol_changes:
+      primary_estimator: scene-weighted paired estimator; row-weighted means descriptive only
+      multi_seed_rule: 3-seed mean positive AND >= 2/3 seeds same direction replaces any single-seed point estimate
+      composition_gate_required: true
+      strict_null_retention_required: true
+      w2_semantic_changes_registered:
+        - closed-form batch-independent MIX credit (above)
+        - >-
+          training authorization is three-tier: smoke (<=50 steps,
+          TRAINING_SMOKE_AUTHORIZED), diagnostic (51-348 steps without
+          --formal, OBJECTIVE_V2_DIAGNOSTIC_AUTHORIZED), formal (--formal
+          or >348 steps, FORMAL_TRAINING_AUTHORIZED)
+        - save_total_limit raised 1 -> 2
+        - train-side answer parser aligned with the eval-side trailing-period tolerance
+        - format reward single-sourced to audit.stage3_format_valid
+        - integer-rounded box mutual-exclusion reject reason integer_box_overlap added
+      superseded_hash_policies:
+        - >-
+          v3_contract_hardening.frozen_hash_policy ("pixel_ops.base_eligibility
+          hash stays untouched") and the matching freeze clause in
+          results/phase1/phase1_plan4.md are superseded under plan7 section 11:
+          base_eligibility gained the integer-rounded mutual-exclusion reject
+          reason integer_box_overlap (mirrored in src/regcfpo/eligibility.py to
+          keep the data-layer/operator-layer no-drift invariant). New code
+          hashes: pixel_ops.py sha256
+          ad69c2cab162e7fe24085214aecc76aece018ecc41303d22349e6f0b9865538a;
+          eligibility.py sha256
+          b9bea77681360801e0e4a24d97b223072670b2ba5dc3bbe40e7e6b8b6068d463.
+          Empirically zero of the 1843 v3 candidate rows and 174 directional
+          train rows change eligibility; old run contracts are unaffected and
+          resume fail-closed by design.
+    expanded_setting_preregistration:
+      status: FROZEN_NOT_EXECUTED
+      manifest: manifests/v3_final/v3_directional_train_expanded.jsonl
+      manifest_sha256: "b34b82d6e5b53c8414411c1d11d6465fe4aa0e62cd8c5ab35e67540a02ae0082"
+      freeze_record: manifests/v3_final/v3_expanded_setting_freeze.json
+      freeze_record_sha256: "5d6e14ccff7c57bfe692fd5da93b6b3a0b2e5baf4ae6e12e73c36b86fd31e7cb"
+      audit: manifests/v3_final/v3_directional_train_expanded.audit.json
+      composition: {prompts: 845, scenes: 212, axis: 359, diagonal: 486, sources: "174 unseen clean (76 scenes) + 671 viewed eligible (136 scenes)"}
+      hyperparameters: verbatim copy of the clean-setting frozen values above; no re-calibration permitted
+      step_rule: one full balanced cycle over the expanded mix including replay repetitions
+      evaluation_rule: external benchmarks plus the 8-scene final holdout ONLY; no viewed internal scene may appear in any post-training evaluation path (the internal viewed eval sets are consumed by the merge)
+      launch_condition: >-
+        May launch directly, with no new decision cycle, iff the clean
+        348-step screening passes the mechanism composition gate but the
+        real-task gate fails or reaches trend level only (a dose problem,
+        not an objective problem). If the mechanism gate itself fails, the
+        expanded setting is NOT launched.
+      contradiction_resolution: >-
+        plan7 section 10 requires both "scene-mutually-exclusive with the
+        confirmation-291 / diagonal-335 eval sets" and "~845 prompts", which
+        are jointly unsatisfiable (the 136 viewed scenes contain all 107+86
+        eval scenes). Resolved as: 845 rows frozen, the internal viewed eval
+        sets are consumed by the merge, and expanded-setting evaluation is
+        external-benchmark + final-holdout only. The contradiction and this
+        resolution are recorded in the freeze record
+        (prereg_contradiction_note) and were reported to the user.
+    timeline:
+      decision_day: "2026-09-01"
+      branch_A: mechanism gate pass + real-task gate fail/trend -> launch frozen expanded setting directly
+      branch_B: TF s_swap up but G=16 behavior flat -> think-prefix scoring first, then rollout-level directional reward (one 50->200 step minimal validation)
+      branch_C: mechanism gate fail -> no expanded launch, no rollout-level switch; re-calibrate per plan7 section 4.2 or stop per the 2026-09-05 clause
+      final_method_stop: "2026-09-05"
+      stop_state: {FORMAL_TRAINING_AUTHORIZED: false, A800_MIGRATION_AUTHORIZED: false, ICLR_METHOD_SUBMISSION: STOP}
+    evidence:
+      - results/phase1/phase1_plan7.md
+      - results/phase1/phase1_suggestion3.md
+      - reports/generated/e3_gradient_path_decomposition_v1.json
+      - reports/e3_gradient_path_reconciliation.md
+      - reports/generated/margin_binding_precheck_areg_v1.json
+      - manifests/v3_final/v3_expanded_setting_freeze.json
+
+  - id: a_plus_plus_screening_authorization_20260831
+    recorded_at: "2026-09-01T01:30:00Z"
+    type: gate_arbitration_and_confirmatory_spec_freeze
+    changes_thresholds: true
+    authority: results/phase1/phase1_plan8.md (user verdict A++, 2026-08-31)
+    reason: >-
+      Gate R0 (2026-08-28) returned FAIL on its directional criteria
+      (d_s_swap=-0.000565 <= 0; composition -0.10 < 0.70) while every
+      health/composition core criterion passed (g3-g6).  Power analysis on
+      the probe artifacts shows the directional criterion is unresolvable
+      at the frozen gamma (0.00348) within 20 updates: naive scaling
+      predicts +0.0005 vs a row-level SEM of 0.0029 (n=34).  The user
+      verdict A++ retains the preregistered FAIL, authorizes the 348-step
+      screening, and freezes the full confirmatory spec (estimand, gates,
+      branch rules, analyzers) BEFORE any 348-step result is visible.
+    verdicts:
+      GATE_R0_V1: FAIL_AS_PREREGISTERED
+      GATE_R0_V1_EFFICACY_INTERPRETATION: INCONCLUSIVE_UNDERPOWERED
+      GATE_R0_HEALTH_CORE_G3_G6: PASS
+      AREG_V1_IMPLEMENTATION_PATH: VERIFIED_BY_AUTOGRAD
+      AREG_V1_EMPIRICAL_EFFICACY: PENDING_348_STEP_SCREENING
+      gate_r0_report: reports/generated/gate_r0_probe_readout.json
+      autograd_evidence: >-
+        tests/test_areg_autograd_paths.py (9 tests, sha256
+        eba6de6628be3f4f2d662ad0ad73a52a9e8098c700c56516dae6989a1b6071f5):
+        dL_swap/ds_null == 0, dL_swap/ds_fact == 0 (no such input),
+        active/inactive hinge gradients -w_i/n / 0, stop-gradient target,
+        preservation-only gradient paths on null/factual/logp_fact_orig,
+        theta0 cache requires_grad=False and graph-invisible, weights
+        detached, gamma=0 exact-zero identity with exactly-zero grads.
+        Scope limit (plan8 section 2.1): direct gradient paths only;
+        parameter-level interference through shared weights remains in the
+        statistical domain (anchors + 348-step trajectory).
+    authorizations:
+      SCREENING_348_AUTHORIZED: true
+      FORMAL_TRAINING_AUTHORIZED: false
+      EXPANDED_SETTING_AUTHORIZED: false
+      FINAL_HOLDOUT_VISIBLE: false
+    frozen_confirmatory_spec:
+      label: AREG_V1_CONFIRMATORY_SPEC_FROZEN_BEFORE_348
+      estimand: >-
+        DeltaDelta_b(i,t) = [s_b^AReG(i,t) - s_b^AReG(i,0)] -
+        [s_b^Cont(i,t) - s_b^Cont(i,0)] per row, branch b in
+        {swap, null, fact}; AReG seed k paired with continued seed k
+        (respective continued); pooled over both pairs; scene-clustered
+        bootstrap.  Single-leg before/after is descriptive only.
+      score_unit: mean_per_candidate_token
+      candidate_token_count: 7
+      training_seeds: [2001, 2002]
+      evaluation_seeds: [1701, 1702, 1703]
+      scene_bootstrap: {B: 10000, seed: 20260901, alpha_one_sided: 0.05, cluster_unit: scene_id}
+      primary_endpoints:
+        mechanism: "LCB95(DeltaDelta_s_swap) > 0, both pair points > 0; composition C_swap >= 0.70 only after LCB95(DeltaDelta G_res) > 0"
+        behavior: "G=16 rollout log-odds, AReG vs respective continued"
+        fidelity: "factual/replay/format non-inferiority vs respective continued, margin 1pt; anchor absolute-logp equivalence CI inside [-0.02, +0.02] token-mean nats"
+        external: "M_ext = mean(ViewSpatial overall, CV-Bench COCO, CV-Bench Omni3D, SPBench-SI mca, SPBench-SI na); singles secondary"
+      secondary_endpoints:
+        behavior: [mapped-majority, mapped rate, net behavioral flips, TF-rollout correlation]
+        external: the five component metrics individually
+      analyzer:
+        script: scripts/screening_mechanism_readout.py
+        sha256: "97ecdf63be2306de7fdbf4fa1f7393a09f477b8a614450c30bc285d1027b7082"
+        tests: tests/test_screening_mechanism_readout.py (12 tests)
+        mechanism_probe_manifest: manifests/generated/mechanism_291_full.jsonl
+        mechanism_probe_manifest_sha256: "2707e4593b54c620099359abd2e2799258fe920b34ff6217413eb65a95dbdcb1"
+        mechanism_probe_builder: scripts/build_mechanism_291_manifest.py
+        behavior_paired_noise_threshold: >-
+          T_behavior = 0.1342752663136006, frozen 2026-09-01 by amendment
+          behavior_paired_noise_threshold_freeze_20260901 from the Gate R1
+          theta0 report (three seed sets 1701-1716 / 1801-1816 / 1901-1916)
+          before any screening behavior readout
+      trajectory_gates:
+        step_20_50:
+          probe: 34-row-pairable cheap probe (gate_r0 dev53 set)
+          role: implementation/numeric-health/gradient-activation and early trajectory description only
+          forbidden_stop_reasons:
+            - "point estimate dd_swap <= 0"
+            - "composition < 0.70"
+            - "LCB95 < 0"
+          reason: these checkpoints are under-powered by design
+        step_174:
+          probe: full 291-row mechanism set
+          role: harm / clear-reversal stop ONLY; positive results do NOT trigger early success
+          stop_conditions:
+            - engineering health failure (NaN/Inf/OOM/checkpoint corruption)
+            - format reward drop vs respective continued beyond the frozen 1pt NI bound
+            - factual/replay non-inferiority failure (evaluated where rollout evals exist; enforced in full at step 348)
+            - absolute factual-answer logp 95% CI clearly outside the frozen equivalence interval
+            - both seed pairs negative point estimates AND pooled UCB95(DeltaDelta s_swap) < 0
+            - DeltaDelta G_res again predominantly produced by -DeltaDelta s_null (LCB95(DeltaDelta G) > 0 with C_swap < 0.50)
+        step_348:
+          probe: full 291-row mechanism set; complete screening verdict
+          mechanism_gate:
+            - "m1 LCB95(dd_swap)>0 and both pair points >0"
+            - "m2 composition >= 0.70 only if LCB95(dd_G)>0"
+            - "m3 anchor equivalence CI inside [-0.02,+0.02]"
+            - "m4 swap DCA not below theta0"
+            - "m5 net neg->pos flips positive"
+            - "m6 improvement reaches theta0-negative rows"
+          behavior_gate: [both AReG seeds better than respective continued on G=16 rollout log-odds, ">= 2/3 evaluation seeds same direction", exceeds the Gate R1 frozen paired-noise threshold, TF-rollout correlation not degraded]
+          fidelity_gate: [factual >= continued - 1pt, replay >= continued - 1pt, format >= continued - 1pt, anchor absolute logp inside equivalence interval, no completion-length or p(<think>) collapse]
+          external_gate: M_ext primary macro; screening-to-expanded authorization does not hard-block on external; the final method-paper claim does
+      flip_and_magnitude_tracking: >-
+        per checkpoint per leg: d_i^flip = max(0, -s_swap,i); s_swap
+        mean/median/p10/p25/p75/p90; median distance to zero; frac(s_swap>0);
+        pos->neg / neg->pos / net flips; margin growth on theta0-positive
+        rows; distance shrink on theta0-negative rows; predicted zero
+        crossers at the current local slope.  Auxiliary readout only; the
+        Goodhart branch is triggered by TF-score improvement without paired
+        G=16 behavior improvement, NOT by any distance-percentage threshold
+        (the proposed 20% rule is rejected as unsourced).
+      continued_identical_g16: >-
+        continued legs undergo the identical G=16 behavior evaluation as
+        AReG legs, same harness, same eval seeds; otherwise AReG-vs-drift
+        vs noise are indistinguishable.
+      exposure_audit_contract: >-
+        every 348-step run contract records: axis exposures, diagonal
+        exposures, unique directional prompts, unique directional scenes,
+        per-prompt repeat histogram, unseen prompts, replay unique
+        prompts/scenes, and the AReG/continued schedule identity (the
+        CycleOrderSampler is seed-independent by construction).  Correct
+        description: one balanced exposure cycle over 174 directional
+        slots (58 axis + 116 diagonal; axis prompts repeat, ~35 diagonal
+        prompts may stay unvisited) + 174 replay slots -- NOT "each
+        directional prompt exactly once".
+      gate_power_precheck_permanent_rule:
+        estimand: explicitly defined per gate
+        unit: explicitly defined per gate
+        cluster_unit: scene
+        alpha: 0.05 one-sided
+        target_power: 0.80
+        sesoi: 0.005
+        sesoi_unit: token-mean nats on the branch margin
+        sesoi_rationale: >-
+          ~3/4 of the killed objective's true 50-step swap component
+          (+0.00668) and ~4x the 291-row single-model SEM (0.0012); the
+          DeltaDelta SEM is recomputed scene-clustered at readout time and
+          the requirement MDE80 <= SESOI is re-verified on it.
+        requirement: MDE80 <= SESOI
+      version_governance:
+        rule: >-
+          After this freeze: changing the objective, gamma, margins, data,
+          primary endpoints, thresholds, or branch logic creates a new
+          version AREG_V2_EXPLORATORY and may not be presented as a V1
+          confirmatory result; pure implementation-bug fixes made WITHOUT
+          viewing affected results keep confirmatory status via audit,
+          versioning, and full rerun of the affected legs; checkpoint
+          corruption / missing fields / hash mismatch is fail-closed with
+          a full rerun of the affected leg; report-text-only corrections
+          record a superseded report without voiding science results.
+        paper_framing: >-
+          The protocol is presented as "auditable stage-wise protocol
+          freezing", not as a from-the-start immutable preregistration.
+      four_branch_freeze:
+        - "mechanism + behavior + fidelity + external all pass -> full GO: fresh-seed formal matrix"
+        - "mechanism + behavior + fidelity pass, external zero/trend -> dose/coverage insufficient: launch the frozen expanded setting"
+        - "TF mechanism pass but G=16 behavior flat -> TF-behavior Goodhart: think-prefix proxy first, then one minimal validation; do NOT expand data first"
+        - "mechanism fail or fidelity fail -> objective still not fixed: no data expansion, no rollout-level switch; stop or restructure"
+      superseded: >-
+        The 2026-08-27 amendment's timeline.branch_A/B/C block and its
+        fixed date table are superseded by this four-branch freeze and by
+        event-dependency ordering (plan8 section 7); the expanded-setting
+        launch_condition is narrowed accordingly (branch order: behavior
+        flat routes to think-prefix, not to expansion).
+      non_inferiority_note: >-
+        Fidelity uses non-inferiority (LCB95(AReG - Cont) > -delta_NI,
+        delta_NI = 1pt for factual/replay/format), NOT "not significant";
+        anchor drift requires the CI fully inside the frozen equivalence
+        interval [-0.02, +0.02] token-mean nats ("not significant" is not
+        equivalence).
+    evidence:
+      - results/phase1/phase1_plan8.md
+      - reports/generated/gate_r0_probe_readout.json
+      - reports/generated/areg_gamma_calibration_readout.json
+      - reports/generated/local_gamma_calibration_readout.json
+      - tests/test_areg_autograd_paths.py
+      - scripts/screening_mechanism_readout.py
+      - manifests/generated/mechanism_291_full.freeze.json
+      - records/EXPERIMENT_LOG.md (2026-08-28 entries)
+  - id: a_plus_plus_exposure_description_erratum_20260901
+    recorded_at: "2026-09-01T02:00:19Z"
+    kind: documentation_erratum
+    scope: >-
+      exposure_audit_contract "Correct description" sentence of amendment
+      a_plus_plus_screening_authorization_20260831.
+    erratum: >-
+      That sentence stated "one balanced exposure cycle over 174 directional
+      slots (58 axis + 116 diagonal; axis prompts repeat, ~35 diagonal
+      prompts may stay unvisited) + 174 replay slots".  The frozen manifest
+      v3_areg_train_348.jsonl (sha256
+      3ea0b265ef41afe165e7083c4eb17562d1b90e8af2a356fed7f268654a99bc20, audit
+      manifests/v3_final/v3_areg_train_348.audit.json) actually carries 174
+      directional slots = 23 axis + 151 diagonal, every pool row visited
+      exactly once (no axis repeats, 0 pool rows unvisited, 0 off-pool
+      visits), plus 174 replay slots (172 unique (scene,question) prompts,
+      143 unique scenes); directional rows sit at even cycle_position, replay
+      at odd.  The exposure_audit_contract FIELD LIST is unchanged.  The
+      unseen-prompts field is evaluated against the registered directional
+      pool manifests/v3_final/v3_directional_train.jsonl and recorded in the
+      shared report reports/generated/screening_exposure_audit.json (sha256
+      7dd9dabeed68311276b9f721956de6249a3502245b6e22019d195ad984c1dff4);
+      per-run contracts embed the remaining fields, computed from each run's
+      loaded rows by train_stage4.build_run_contract.
+    governance: >-
+      Documentation fix of a factual error in the 2026-09-01 amendment, made
+      BEFORE any screening run started and without viewing any screening
+      result; no objective, endpoint, threshold, data, or branch-logic
+      change, so AREG_V1 confirmatory status is unaffected.
+    evidence:
+      - manifests/v3_final/v3_areg_train_348.audit.json
+      - reports/generated/screening_exposure_audit.json
+      - src/regcfpo/exposure_audit.py
+      - scripts/screening_exposure_audit.py
+  - id: behavior_paired_noise_threshold_freeze_20260901
+    recorded_at: "2026-09-01T04:50:06Z"
+    kind: threshold_freeze
+    scope: >-
+      screening_348 behavior_paired_noise_threshold (previously recorded as
+      "artifact pending Gate R1 set3 completion").
+    freeze: >-
+      T_behavior = 0.1342752663136006, read verbatim from the completed Gate
+      R1 theta0 report reports/generated/behavior_noise_floor_r1.json at field
+      branches/canonical_resampling_return/log_odds_noise/range_distribution/scene_weighted_primary/mean
+      (G=16 rollout log-odds, per-row range across the three theta0 seed sets
+      1701-1716 / 1801-1816 / 1901-1916, scene-weighted primary mean over
+      n=76 scenes; estimator var_ddof=1; 0 rejected rows).  Behavior-gate
+      application: for each training-seed pair k in {2001, 2002}, the primary
+      behavior statistic is the scene-weighted mean of the paired per-row
+      G=16 rollout log-odds difference (AReG seed k final minus its
+      respective continued seed k final) on the 174 directional rows,
+      averaged over evaluation seeds 1701-1703; the gate requires this
+      statistic > T_behavior IN ADDITION TO the already-frozen conditions
+      (both AReG seeds better than respective continued, >= 2/3 evaluation
+      seeds same direction, TF-rollout correlation not degraded).  The
+      scene_weighted_primary mean of the per-row across-set range is chosen
+      because it matches the primary estimator's scene weighting and
+      directly measures the largest pairwise sampling fluctuation observed
+      at theta0 on the identical harness; per-row statistics
+      (row_weighted_descriptive, var_seed_distribution) remain descriptive
+      context only.
+    governance: >-
+      Frozen BEFORE any screening behavior readout (no G=16 evaluation of any
+      screening leg has been run or viewed); the source artifact was
+      completed at 2026-09-01T04:41Z and its three input JSONL sha256 values
+      are recorded inside it.  No objective, endpoint, data, or branch-logic
+      change; this pins the previously pending threshold value, so AREG_V1
+      confirmatory status is unaffected.
+    evidence:
+      - reports/generated/behavior_noise_floor_r1.json
+      - scripts/analyze_behavior_noise_floor_r1.py
+      - configs/phase1_prereg.yaml (behavior_paired_noise_threshold field)
+  - id: behavior_eval_seed_group_mapping_20260901
+    recorded_at: "2026-09-01T04:57:30Z"
+    kind: operational_pinning
+    scope: >-
+      screening_348 behavior gate: expansion of the frozen evaluation_seeds
+      [1701, 1702, 1703] into G=16 rollout groups on the V3-code-path harness
+      (scripts/behavior_noise_floor_r1.py, one completion per seed).
+    pinning: >-
+      Each frozen evaluation seed e in {1701, 1702, 1703} anchors a G=16
+      rollout group with the deterministic seed list [e + 1000*j for j in
+      0..15], i.e.  group 1701 = {1701, 2701, ..., 15701}, group 1702 =
+      {1702, 2702, ..., 15702}, group 1703 = {1703, 2703, ..., 15703}.  The
+      three groups are pairwise disjoint, each has exactly 16 seeds, and the
+      frozen seed numbers are used verbatim as group anchors.  The per-group
+      statistic (per-row rollout log-odds log((n(y_cf)+0.5)/(n(y)+0.5)),
+      swap branch, all 174 directional rows) is computed per group; the
+      ">= 2/3 evaluation seeds same direction" condition is evaluated on the
+      three groups; the threshold comparison uses the average of the three
+      group-level paired AReG-minus-continued scene-weighted means, per
+      amendment behavior_paired_noise_threshold_freeze_20260901.
+    rationale: >-
+      The A++ freeze fixed the three evaluation seed identities but did not
+      specify how one evaluation seed yields G=16 rollouts on a
+      one-completion-per-seed harness (the Gate R1 anchor+consecutive
+      pattern 1701-1716 cannot be applied verbatim to 1702/1703 without
+      overlapping groups).  This pinning resolves that operational gap only;
+      it does not change any seed identity, endpoint, threshold, estimator,
+      or branch logic, and is made BEFORE any screening behavior evaluation
+      has been run or viewed.  AREG_V1 confirmatory status is unaffected.
+    evidence:
+      - configs/phase1_prereg.yaml (frozen_confirmatory_spec evaluation_seeds)
+      - scripts/behavior_noise_floor_r1.py
+      - runs/behavior_noise_floor_r1/set2/run_config.json
+  - id: screening_behavior_gate_analyzer_freeze_20260901
+    recorded_at: "2026-09-01T05:20:33Z"
+    kind: analyzer_freeze
+    scope: >-
+      screening_348 behavior gate: data-collection driver and decision
+      analyzer, frozen BEFORE any screening behavior evaluation has been run
+      or viewed.
+    freeze: >-
+      Driver scripts/screening_behavior_eval.py sha256
+      d835d748d7da73319bc337423605399d9349374f8185bf9be3e73e96903ce399
+      (V3-code-path G=16 generation, per-leg TF arms rescored, factual branch
+      skipped, seed groups per amendment
+      behavior_eval_seed_group_mapping_20260901, fail-closed resume/contract
+      hygiene identical to Gate R1).  Analyzer
+      scripts/screening_behavior_readout.py sha256
+      141204261a5c7d6c6e7eef3850457a6de029fafeabd037d8450a40a906d40f21
+      (primary statistic = scene-weighted mean of per-row paired swap
+      log-odds differences AReG minus respective continued, averaged over
+      the three eval groups; conditions c1 point positive, c2 >= 2/3 groups
+      same direction, c3 > T_behavior = 0.1342752663136006, c4 AReG
+      min-across-groups scene-level TF-rollout Spearman >= theta0
+      min-across-sets minus one theta0 across-set range, the theta0
+      reference read from reports/generated/behavior_noise_floor_r1.json;
+      secondaries mapped-majority / net behavioral flips / per-leg per-group
+      TF-rollout correlation; scene bootstrap CIs descriptive only).
+      Tests tests/test_screening_behavior_gate.py sha256
+      820840fdb928ee1a7e5e37f4e18888701d9eccea1fe3da784453734496f294d8
+      (13 tests, all green; full suite 638 passed / 2 skipped).
+    governance: >-
+      No endpoint, threshold, seed identity, or branch-logic change; this
+      pins the analyzer implementations of the already-frozen behavior gate
+      before their first contact with screening data.  Any later edit to
+      either script creates AREG_V2_EXPLORATORY per version_governance,
+      except pure implementation-bug fixes made WITHOUT viewing affected
+      results, which keep confirmatory status via audit + full rerun of the
+      affected readout.
+    evidence:
+      - scripts/screening_behavior_eval.py
+      - scripts/screening_behavior_readout.py
+      - tests/test_screening_behavior_gate.py
+      - reports/generated/behavior_noise_floor_r1.json
+  - id: screening_fidelity_gate_analyzer_freeze_20260901
+    recorded_at: "2026-09-01T05:34:31Z"
+    kind: analyzer_freeze
+    scope: >-
+      screening_348 fidelity gate: decision analyzer and its operational
+      pinning of the collapse guards, frozen BEFORE any screening fidelity
+      evaluation has been run or viewed.
+    freeze: >-
+      Analyzer scripts/screening_fidelity_readout.py sha256
+      7c63f15ba1305686f3add465a552fa2d8504b94f9eb7a66d19651e07bdf06fc6.
+      Data collection: scripts/e3_rollout_eval.py (already hash-bound) via
+      scripts/screening_fidelity_queue.sh sha256
+      c86d2b9927c34c12eece650527a9008113e131412e76047a76ecc041c62cb180,
+      runs/screening_348_fidelity/ layout mirroring runs/noise_floor_4090
+      (same frozen manifests: factual =
+      manifests/v3_final/saturation_manifest_confirmation_distribution.jsonl,
+      replay = manifests/v3_final/v3_replay_eval.jsonl; eval seeds
+      1701/1702/1703; G=4; official generation semantics).
+      Statistics: per-row 4-rollout mean, areg-cont difference averaged over
+      the three eval seeds, scene-clustered bootstrap (B=10000, seed
+      20260901, one-sided alpha=0.05) LCB95; NI conditions f1/f2/f3 require
+      LCB95 > -0.01 (delta_NI = 1pt).  Collapse guards pinned as:
+      f4 mean_completion_tokens(AReG) >= 0.5 x Cont in EVERY eval seed
+      (pooled factual+replay completions); f5 p(<think>)_AReG >=
+      p(<think>)_Cont - 0.05 in EVERY eval seed.  The guards are
+      collapse-only tripwires, deliberately insensitive to small drift; the
+      factual/null absolute-logp equivalence condition remains delegated to
+      the mechanism readout m3 (frozen interval [-0.02, +0.02]).
+      Tests tests/test_screening_fidelity_gate.py sha256
+      032287b3945c98b9e493b9c167fafe7500a1692f27c1ab52196372ecef15a1dc
+      (8 tests, all green; full suite 646 passed / 2 skipped).
+      Companion behavior queue scripts/screening_behavior_queue.sh sha256
+      b0b2f39069c1bbe7e42caf761f5164e0827cf21779574bfcaa79b621d4ce9e48
+      (invocation wrapper only; the eval logic lives in the frozen driver).
+    governance: >-
+      No endpoint, NI margin, seed identity, or branch-logic change; the
+      collapse-guard operationalization fills an unspecified operational
+      detail of the frozen fidelity gate (plan8 listed the guard without
+      numeric criteria) and is pinned before first contact with screening
+      fidelity data.  AREG_V1 confirmatory status is unaffected.
+    evidence:
+      - scripts/screening_fidelity_readout.py
+      - scripts/screening_fidelity_queue.sh
+      - scripts/screening_behavior_queue.sh
+      - tests/test_screening_fidelity_gate.py
+      - runs/noise_floor_4090 (layout/manifest precedent)
+  - id: screening_behavior_eval_identity_erratum_20260901
+    recorded_at: "2026-09-01T05:53:19Z"
+    kind: implementation_bugfix_erratum
+    scope: >-
+      scripts/screening_behavior_eval.py hash recorded in amendment
+      screening_behavior_gate_analyzer_freeze_20260901.
+    erratum: >-
+      The originally frozen driver (sha256
+      d835d748d7da73319bc337423605399d9349374f8185bf9be3e73e96903ce399) reused
+      the frozen base-model identity hasher verbatim, which hard-fails on
+      trainer-saved leg checkpoints (they carry chat_template.json instead of
+      chat_template.jinja and no video_preprocessor_config.json).  The driver
+      now computes identity over the frozen identity files that are present,
+      additionally hashes chat_template.json, and records the missing list
+      explicitly in the run contract (fail-explicit, not fail-open).  Fixed
+      hash: scripts/screening_behavior_eval.py sha256
+      f609ac8fad6c39e3d1192ffcd74dbeb6680a816267d4a631235018a6a8066e7d;
+      tests tests/test_screening_behavior_gate.py sha256
+      2f305e180cba816c510d3db165bc8ed844811f72fbab64744d96f27e877093ee
+      (15 tests, all green).  The analyzer
+      scripts/screening_behavior_readout.py (sha256
+      141204261a5c7d6c6e7eef3850457a6de029fafeabd037d8450a40a906d40f21) is
+      unchanged.
+    governance: >-
+      Pure implementation-bug fix made BEFORE any screening behavior
+      evaluation existed (the failure occurred at driver startup on the
+      2-row smoke, before any gate data was produced); no endpoint,
+      threshold, seed, or analysis-logic change.  Per version_governance,
+      confirmatory status is retained; the 2-row smoke output
+      (runs/screening_348_behavior/_smoke_areg_2001) is a
+      pipeline-validation artifact, not gate data, and is excluded from all
+      readouts.
+    evidence:
+      - runs/screening_348_behavior/_smoke_areg_2001/run_config.json
+      - tests/test_screening_behavior_gate.py
+  - id: screening_external_and_master_readout_freeze_20260901
+    recorded_at: "2026-09-01T06:50:32Z"
+    kind: analyzer_freeze
+    scope: >-
+      screening_348 external gate and the four-branch master readout, frozen
+      BEFORE any screening external evaluation has been run or viewed.
+    freeze: >-
+      External analyzer scripts/screening_external_readout.py sha256
+      75c9492e878bf66035deb40735d9d0592d7143fa7752157a0938de4612637716:
+      per-item scoring rules are verbatim re-implementations of the vendor
+      harness (viewspatial_bench.py / cvbench.py / vsi_utils.py); primary
+      endpoint M_ext = mean(ViewSpatial overall, CV-Bench COCO, CV-Bench
+      Omni3D, SPBench-SI mca, SPBench-SI na); comparison = paired
+      same-eval-seed AReG minus respective continued with paired item
+      bootstrap (B=10000, seed 20260901, one-sided alpha=0.05, items
+      resampled per component jointly across legs, seeds averaged);
+      verdict PASS iff both pairs LCB95 > 0, TREND iff pooled point > 0,
+      else ZERO.  Integrity self-check: every gate run must reproduce the
+      frozen 2026-08-28 theta0 noise-floor table (15 values, tolerance
+      5e-4) or refuse to emit a verdict (validated: 15/15 reproduced).
+      Queue scripts/screening_external_queue.sh sha256
+      027aa4627b3dc30b58ff3bd6f4de9251ff77a5e5fc4425943f6b64300c2a7da9
+      mirrors the theta0 noise-floor protocol exactly (same harness, greedy
+      decoding WITHOUT --sample, seeds 1701/1702/1703, batch 16).
+      Master readout scripts/screening_master_readout.py sha256
+      f6e99f2b2c6cbddf7985b41ebcb00e5eae1b094df8d27ad0d24df99786c57fa3:
+      pure aggregator over the four frozen gate reports; fail-first branch
+      arbitration (mechanism/fidelity fail -> branch_D_stop; else behavior
+      fail -> branch_C_goodhart; else external TREND/ZERO ->
+      branch_B_expanded; else branch_A_full_go).  Tests
+      tests/test_screening_external_gate.py sha256
+      87ca55332c9c28836b6deb48f5ad8fc5b5b61407b8bbda34042780a3794bff2a and
+      tests/test_screening_master_readout.py sha256
+      f98ed59ea7eb97061a1c33f6a08df9484c0fe45a8ba47a5848d57e93d5712fc3
+      (full suite 671 passed / 2 skipped).
+    governance: >-
+      No endpoint, margin, seed, or branch-logic change; this pins the
+      analyzer implementations of the already-frozen external gate and the
+      already-frozen four-branch table before first contact with screening
+      external data.  AREG_V1 confirmatory status is unaffected.
+    evidence:
+      - scripts/screening_external_readout.py
+      - scripts/screening_master_readout.py
+      - scripts/screening_external_queue.sh
+      - records/EXPERIMENT_LOG.md (2026-08-28 theta0 noise-floor table)

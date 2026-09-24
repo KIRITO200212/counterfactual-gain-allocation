@@ -1,0 +1,20 @@
+# Install torch==2.5.1 and torchvision==0.20.1 from cu124 first.
+numpy==1.26.4
+PyYAML==6.0.3
+Pillow==11.1.0
+transformers==4.49.0
+tokenizers==0.21.4
+accelerate==1.5.2
+datasets==5.0.1
+trl==0.17.0
+qwen-vl-utils==0.0.10
+safetensors==0.5.3
+huggingface-hub==0.36.2
+deepspeed==0.15.4
+liger-kernel==0.5.2
+wandb==0.18.3
+babel==2.18.0
+python-Levenshtein==0.27.4
+pycocotools==2.0.11
+math-verify==0.9.0
+scipy==1.15.2

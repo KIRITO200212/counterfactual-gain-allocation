@@ -1,0 +1,63 @@
+{
+  "status": "passed_cpu_checks_v0.1.0_submission_snapshot",
+  "original_code_license": "MIT, approved by the author; upstream Apache-2.0-derived portions retain their terms",
+  "tests": {
+    "passed": 135,
+    "skipped": 6,
+    "failed": 0,
+    "skip_reason": "Four integration tests need excluded real model/data; two need optional training-only datasets dependency."
+  },
+  "entrypoints": [
+    {
+      "script": "train_paper.py",
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "script": "prepare_bridge_images.py",
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "script": "train_stage4.py",
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "script": "e3_mechanism_diagnostic.py",
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "script": "phase2_matched_pair_generation.py",
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "script": "plan10_prefix_value_calibration.py",
+      "returncode": 0,
+      "error": null
+    }
+  ],
+  "numerical_reproduction": {
+    "status": "passed",
+    "absolute_tolerance": 1e-12,
+    "scope": "two seeds \u00d7 four TF contrasts, matched-generation contrasts, absolute candidate changes and preference switches; all nine local bridge contrasts and aggregate counts"
+  },
+  "scientific_copied_source_files": "hash-identical; one CPU test adds --no-deepspeed; pyproject description updated for final research scope",
+  "new_gpu_training_performed": false,
+  "excluded": [
+    "model weights",
+    "photos",
+    "full dataset",
+    "free-form completions",
+    "individual annotation forms",
+    "credentials",
+    "machine absolute paths",
+    "large logs"
+  ],
+  "known_external_requirements": [
+    "Acquire pinned SpatialLadder data/model and upstream training checkout separately",
+    "Install optional training runtime before GPU reproduction"
+  ]
+}

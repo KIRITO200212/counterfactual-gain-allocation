@@ -1,0 +1,82 @@
+[
+  {
+    "source": "runs/phase2_diagnostic/mp_gen_theta0/rows.jsonl",
+    "sha256": "31a9e36fb39933801bb19f615238ef6189b48fd7ab65286bd34f4188b1e584f6",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mech4090_base.jsonl",
+    "sha256": "0536c91c7c0b882f1ea5b98d727c776283d9b2035ebd52708f19f6b81077719b",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp_mech_regcfpo.jsonl",
+    "sha256": "7f28decd93d6e8852c2d728730396ee7ae5727bd4e085f7ccb578137e48f4e78",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp_mech_continued.jsonl",
+    "sha256": "d9b0c8a906257deb06b336691fa30c4ce73e85bf93c34e7c3788c88b2ad2159e",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp3_mech_local_s1234.jsonl",
+    "sha256": "9fd425b8b46a96e0bb967e3848e49b5316bf306061174eabf20412bac42c4588",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp_gen_regcfpo/rows.jsonl",
+    "sha256": "b9c317e97891c3fe976783b0a2e0034c92590eb8b3ea78c1128873df74e2570c",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp_gen_continued/rows.jsonl",
+    "sha256": "27f4dab7fd86595823f3cdad6b4749ccae3988c7784a9d32b0b642aae6286733",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp2_mech_regcfpo.jsonl",
+    "sha256": "9a32a70b47746050b693ed599f9542e67cfc02892c278cb52b48fe6bc9dcc2b6",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp2_mech_continued.jsonl",
+    "sha256": "d8706fe7e4f26b5e89bdf1819585113ea4db620beb592446955cedf98d84a1b6",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp3_mech_local_s20260910.jsonl",
+    "sha256": "236d5ec95b889809163e98e205d20cec10276061a86d2fce8d3fa1a9bdc73d49",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp2_gen_regcfpo/rows.jsonl",
+    "sha256": "b6440626c5ca676a31e675fb34c0b6699e7ab12c1c409005e8bff300aa824eee",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "runs/phase2_diagnostic/mp2_gen_continued/rows.jsonl",
+    "sha256": "d682e99d71c1b2edd5f25234ec040f1636182ab5aa1938d790958e1b7842629b",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "reports/generated/plan10_r1c_prefix_eval_theta0_s5301_g8.json",
+    "sha256": "6b5e242f0dbda4c52aee4f2d169c7867189c1631cfaac38907c18e649e881611",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "reports/generated/plan10_r1c_prefix_eval_continued_s5301_g8.json",
+    "sha256": "4d9253115a1e376413405f7602834e588bfa2ff1953c0cc90f78a733a4a15082",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "reports/generated/plan10_r1c_prefix_eval_prefix_only_s5301_g8.json",
+    "sha256": "73afc5d9c3b3bcd2b1c8717d8731917451b010f1ad73f972895cd3d3f608e04a",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  },
+  {
+    "source": "reports/generated/plan10_r1c_prefix_eval_full_s5301_g8.json",
+    "sha256": "2e658c7724bb90a782ef8174d62c70fc08fd52ed15c486157842602006ba24a9",
+    "extraction": "numeric fields only; sequential pseudonymous question/scene IDs; no generated text, images or identifiers of annotators"
+  }
+]

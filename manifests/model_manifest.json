@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "upstream_code": {
+    "repository": "https://github.com/ZJU-REAL/SpatialLadder.git",
+    "commit": "7a0d2ee85c28728835300310a349a53a15967f2e",
+    "local_path": "vendor/SpatialLadder"
+  },
+  "policy": {
+    "repo_id": "hongxingli/SpatialLadder-3B",
+    "revision": "0819c3adf8827a2ea6c0348d49a23503ecb1f428",
+    "revision_status": "PINNED_FROM_HUGGING_FACE_API_2026-08-18",
+    "expected_total_weight_bytes": 15018491904,
+    "license": "apache-2.0",
+    "weight_files": [
+      {
+        "path": "model-00001-of-00004.safetensors",
+        "bytes": 4972304384,
+        "sha256": "f7beadef0f1e132fd6fad770138b27e2af0e46be73a8287f26444cf738c63c58"
+      },
+      {
+        "path": "model-00002-of-00004.safetensors",
+        "bytes": 4932949248,
+        "sha256": "7e5e0cf0d5cff44c09e52ddd3379778979fac504e214ada670c1e25f9d1ce962"
+      },
+      {
+        "path": "model-00003-of-00004.safetensors",
+        "bytes": 4932949336,
+        "sha256": "f260f661085b9f7e0177dab9ef075e92c2756fc44c0391348226a8c20c188f9d"
+      },
+      {
+        "path": "model-00004-of-00004.safetensors",
+        "bytes": 180380208,
+        "sha256": "3bd5466bd3ebb2bcf232751f2776fc4025826f0e9f656d7a2fa9a1c03e32819d"
+      }
+    ]
+  },
+  "base_model": "Qwen/Qwen2.5-VL-3B-Instruct"
+}

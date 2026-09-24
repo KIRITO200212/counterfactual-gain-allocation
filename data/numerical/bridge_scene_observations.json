@@ -1,0 +1,766 @@
+{
+  "theta0": [
+    {
+      "scene_id": "bridge_scene000",
+      "boundary_probability": 0.15262060845270753,
+      "suffix_hits": 4,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene001",
+      "boundary_probability": 0.126649284735322,
+      "suffix_hits": 5,
+      "suffix_total": 32,
+      "full_hits": 2,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene002",
+      "boundary_probability": 0.26738254725933075,
+      "suffix_hits": 6,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene003",
+      "boundary_probability": 0.006525087519548833,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene004",
+      "boundary_probability": 0.02441161312162876,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene005",
+      "boundary_probability": 0.04213128797709942,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene006",
+      "boundary_probability": 0.09762614034116268,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene007",
+      "boundary_probability": 0.02433616202324629,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene008",
+      "boundary_probability": 0.029539696173742414,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene009",
+      "boundary_probability": 0.00965437013655901,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene010",
+      "boundary_probability": 0.018549920991063118,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene011",
+      "boundary_probability": 0.052063822746276855,
+      "suffix_hits": 0,
+      "suffix_total": 24,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 3
+    },
+    {
+      "scene_id": "bridge_scene012",
+      "boundary_probability": 0.004483901371713728,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene013",
+      "boundary_probability": 0.03448545909486711,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene014",
+      "boundary_probability": 0.21084687486290932,
+      "suffix_hits": 4,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene015",
+      "boundary_probability": 0.05150493606925011,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene016",
+      "boundary_probability": 0.0034086282830685377,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene017",
+      "boundary_probability": 0.022530718240886927,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene018",
+      "boundary_probability": 0.024642213247716427,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene019",
+      "boundary_probability": 0.0329614516813308,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene020",
+      "boundary_probability": 0.11937204003334045,
+      "suffix_hits": 7,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    }
+  ],
+  "continued": [
+    {
+      "scene_id": "bridge_scene000",
+      "boundary_probability": 0.011223909561522305,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene001",
+      "boundary_probability": 0.12126239016652107,
+      "suffix_hits": 6,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene002",
+      "boundary_probability": 0.19591232854872942,
+      "suffix_hits": 5,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene003",
+      "boundary_probability": 0.008509132778272033,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene004",
+      "boundary_probability": 0.058426281437277794,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene005",
+      "boundary_probability": 0.041972423903644085,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene006",
+      "boundary_probability": 0.1071130195632577,
+      "suffix_hits": 4,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene007",
+      "boundary_probability": 0.04326735204085708,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene008",
+      "boundary_probability": 0.030789769254624844,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene009",
+      "boundary_probability": 0.005974923900794238,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene010",
+      "boundary_probability": 0.019769120728597045,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene011",
+      "boundary_probability": 0.05233773961663246,
+      "suffix_hits": 0,
+      "suffix_total": 24,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 3
+    },
+    {
+      "scene_id": "bridge_scene012",
+      "boundary_probability": 0.004168148472672328,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene013",
+      "boundary_probability": 0.012263689539395273,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene014",
+      "boundary_probability": 0.3087300881743431,
+      "suffix_hits": 8,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene015",
+      "boundary_probability": 0.03351616766303778,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene016",
+      "boundary_probability": 0.004375673190224916,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene017",
+      "boundary_probability": 0.023213892243802547,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene018",
+      "boundary_probability": 0.01857615076005459,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene019",
+      "boundary_probability": 0.014126535039395094,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene020",
+      "boundary_probability": 0.09643957484513521,
+      "suffix_hits": 6,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    }
+  ],
+  "prefix_only": [
+    {
+      "scene_id": "bridge_scene000",
+      "boundary_probability": 0.06266754679381847,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene001",
+      "boundary_probability": 0.12069131061434746,
+      "suffix_hits": 6,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene002",
+      "boundary_probability": 0.3701474852859974,
+      "suffix_hits": 8,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene003",
+      "boundary_probability": 0.009857089607976377,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene004",
+      "boundary_probability": 0.02120075048878789,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene005",
+      "boundary_probability": 0.051693969406187534,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene006",
+      "boundary_probability": 0.08767530974000692,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene007",
+      "boundary_probability": 0.026194647885859013,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene008",
+      "boundary_probability": 0.03188379807397723,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene009",
+      "boundary_probability": 0.008709674701094627,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene010",
+      "boundary_probability": 0.020893144654110074,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene011",
+      "boundary_probability": 0.04959746263921261,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene012",
+      "boundary_probability": 0.004514806088991463,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene013",
+      "boundary_probability": 0.04760634677950293,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene014",
+      "boundary_probability": 0.20226474106311798,
+      "suffix_hits": 4,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene015",
+      "boundary_probability": 0.04521370120346546,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene016",
+      "boundary_probability": 0.004176352376816794,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene017",
+      "boundary_probability": 0.02817168878391385,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene018",
+      "boundary_probability": 0.03913693153299391,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene019",
+      "boundary_probability": 0.013738538953475654,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene020",
+      "boundary_probability": 0.12673610728234053,
+      "suffix_hits": 6,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    }
+  ],
+  "full": [
+    {
+      "scene_id": "bridge_scene000",
+      "boundary_probability": 0.10280533507466316,
+      "suffix_hits": 1,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene001",
+      "boundary_probability": 0.12760690040886402,
+      "suffix_hits": 5,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene002",
+      "boundary_probability": 0.3320820638909936,
+      "suffix_hits": 9,
+      "suffix_total": 32,
+      "full_hits": 2,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene003",
+      "boundary_probability": 0.014232054352760315,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene004",
+      "boundary_probability": 0.05670526064932346,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene005",
+      "boundary_probability": 0.04189703380689025,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene006",
+      "boundary_probability": 0.12908906117081642,
+      "suffix_hits": 3,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene007",
+      "boundary_probability": 0.0907424595206976,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene008",
+      "boundary_probability": 0.033103921450674534,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 1,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene009",
+      "boundary_probability": 0.01927454862743616,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene010",
+      "boundary_probability": 0.026870247907936573,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene011",
+      "boundary_probability": 0.05071550980210304,
+      "suffix_hits": 0,
+      "suffix_total": 24,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 3
+    },
+    {
+      "scene_id": "bridge_scene012",
+      "boundary_probability": 0.004159089352469891,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene013",
+      "boundary_probability": 0.07411620719358325,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 2,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene014",
+      "boundary_probability": 0.2327573224902153,
+      "suffix_hits": 5,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene015",
+      "boundary_probability": 0.0537281297147274,
+      "suffix_hits": 3,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene016",
+      "boundary_probability": 0.005144352559000254,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene017",
+      "boundary_probability": 0.03213275270536542,
+      "suffix_hits": 0,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene018",
+      "boundary_probability": 0.051761415554210544,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene019",
+      "boundary_probability": 0.053198125679045916,
+      "suffix_hits": 2,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    },
+    {
+      "scene_id": "bridge_scene020",
+      "boundary_probability": 0.1663707233965397,
+      "suffix_hits": 9,
+      "suffix_total": 32,
+      "full_hits": 0,
+      "full_total": 4,
+      "valid_prefixes": 4
+    }
+  ]
+}

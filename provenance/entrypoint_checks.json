@@ -1,0 +1,32 @@
+[
+  {
+    "script": "train_paper.py",
+    "returncode": 0,
+    "error": null
+  },
+  {
+    "script": "prepare_bridge_images.py",
+    "returncode": 0,
+    "error": null
+  },
+  {
+    "script": "train_stage4.py",
+    "returncode": 0,
+    "error": null
+  },
+  {
+    "script": "e3_mechanism_diagnostic.py",
+    "returncode": 0,
+    "error": null
+  },
+  {
+    "script": "phase2_matched_pair_generation.py",
+    "returncode": 0,
+    "error": null
+  },
+  {
+    "script": "plan10_prefix_value_calibration.py",
+    "returncode": 0,
+    "error": null
+  }
+]

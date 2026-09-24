@@ -1,0 +1,218 @@
+{
+  "source": "analysis/reanalysis.json",
+  "sha256": "6ec7fd82022486d0b4156b3dd33b3fd5f151ca5a5e6975cf5bfc6dfc3c2193d6",
+  "table1": [
+    {
+      "endpoint": "primary_gain",
+      "block": "Axis TF: 291 questions / 107 scenes",
+      "unit": "nats/token",
+      "A": {
+        "estimate": 0.04214226688908174,
+        "ci95": [
+          0.03609907390332345,
+          0.04827601343907377
+        ]
+      },
+      "B": {
+        "estimate": 0.0217095678568794,
+        "ci95": [
+          0.017421482705831857,
+          0.025930482162503793
+        ]
+      }
+    },
+    {
+      "endpoint": "local_gain",
+      "block": "Axis TF: 291 questions / 107 scenes",
+      "unit": "nats/token",
+      "A": {
+        "estimate": 0.04152712774628937,
+        "ci95": [
+          0.03518848853877547,
+          0.04769739553207244
+        ]
+      },
+      "B": {
+        "estimate": 0.018040305565691746,
+        "ci95": [
+          0.014504988344057133,
+          0.021548880673621363
+        ]
+      }
+    },
+    {
+      "endpoint": "dominance",
+      "block": "Axis TF: 291 questions / 107 scenes",
+      "unit": "nats/token",
+      "A": {
+        "estimate": 0.02960916903249066,
+        "ci95": [
+          0.022983490235157198,
+          0.03599610792352462
+        ]
+      },
+      "B": {
+        "estimate": 0.01731126100610829,
+        "ci95": [
+          0.013005170388425625,
+          0.021548777085163857
+        ]
+      }
+    },
+    {
+      "endpoint": "same107_gain",
+      "block": "Same questions$^\\dagger$: 107 / 107 scenes",
+      "unit": "nats/token",
+      "A": {
+        "estimate": 0.04001162112634562,
+        "ci95": [
+          0.032914799587112284,
+          0.04733057531400106
+        ]
+      },
+      "B": {
+        "estimate": 0.0204734420267061,
+        "ci95": [
+          0.014925215432099487,
+          0.02594506132586765
+        ]
+      }
+    },
+    {
+      "endpoint": "same107_X",
+      "block": "Same questions$^\\dagger$: 107 / 107 scenes",
+      "unit": "pp",
+      "A": {
+        "estimate": -0.4672897196261682,
+        "ci95": [
+          -3.0373831775700935,
+          2.102803738317757
+        ]
+      },
+      "B": {
+        "estimate": 0.4672897196261682,
+        "ci95": [
+          -1.6355140186915889,
+          2.803738317757009
+        ]
+      }
+    },
+    {
+      "endpoint": "same107_N",
+      "block": "Same questions$^\\dagger$: 107 / 107 scenes",
+      "unit": "pp",
+      "A": {
+        "estimate": -0.9345794392523364,
+        "ci95": [
+          -2.336448598130841,
+          0.2336448598130841
+        ]
+      },
+      "B": {
+        "estimate": -0.4672897196261682,
+        "ci95": [
+          -1.6355140186915889,
+          0.7009345794392523
+        ]
+      }
+    },
+    {
+      "endpoint": "supported_gain",
+      "block": "Human-supported TF$^\\dagger$: 7 questions",
+      "unit": "nats/token",
+      "A": {
+        "estimate": 0.04619613958864768,
+        "ci95": [
+          0.030148019596021695,
+          0.06440610301737872
+        ]
+      },
+      "B": {
+        "estimate": 0.021582545066366064,
+        "ci95": [
+          0.0077958398935742725,
+          0.036660669287856246
+        ]
+      }
+    }
+  ],
+  "table2_local": [
+    {
+      "endpoint": "boundary_mapped_probability",
+      "unit": "pp",
+      "full_vs_prefix_only": {
+        "estimate": 0.015510529112015363,
+        "ci95": [
+          0.0059598941029565,
+          0.024848819835460736
+        ]
+      },
+      "full_vs_continued": {
+        "estimate": 0.023167819232358375,
+        "ci95": [
+          0.005956898633060823,
+          0.04169429641908556
+        ]
+      },
+      "scale": 100
+    },
+    {
+      "endpoint": "suffix_mapped_rate",
+      "unit": "pp",
+      "full_vs_prefix_only": {
+        "estimate": 0.01488095238095238,
+        "ci95": [
+          0.002976190476190476,
+          0.028273809523809524
+        ]
+      },
+      "full_vs_continued": {
+        "estimate": 0.01488095238095238,
+        "ci95": [
+          -0.004464285714285714,
+          0.03422619047619048
+        ]
+      },
+      "scale": 100
+    },
+    {
+      "endpoint": "full_mapped_rate",
+      "unit": "pp",
+      "full_vs_prefix_only": {
+        "estimate": 0.03571428571428571,
+        "ci95": [
+          -0.023809523809523808,
+          0.09523809523809523
+        ]
+      },
+      "full_vs_continued": {
+        "estimate": 0.047619047619047616,
+        "ci95": [
+          -0.011904761904761904,
+          0.11934523809523376
+        ]
+      },
+      "scale": 100
+    }
+  ],
+  "table2_disjoint": [
+    {
+      "endpoint": "swap_mapped",
+      "continued_hits": 24,
+      "full_hits": 26,
+      "outputs": 96
+    },
+    {
+      "endpoint": "null_original",
+      "continued_hits": 90,
+      "full_hits": 88,
+      "outputs": 96
+    },
+    {
+      "endpoint": "combined",
+      "continued_hits": 114,
+      "full_hits": 114,
+      "outputs": 192
+    }
+  ]
+}

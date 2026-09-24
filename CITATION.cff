@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Cite the associated manuscript. ICASSP 2027 submission; no claim of acceptance."
+title: "Where Do Counterfactual Gains Go? Branch Allocation and Answer Supervision in Spatial VLMs"
+type: software
+version: "0.1.0"
+license: MIT
+repository-code: "https://github.com/KIRITO200212/counterfactual-gain-allocation"
+authors:
+  - given-names: Yihe
+    family-names: Chi
+  - given-names: Hongbo
+    family-names: Zhang
+  - given-names: Quanquan
+    family-names: Li
+  - given-names: Yuxiang
+    family-names: Huang
+  - given-names: Hongzhen
+    family-names: Zhang
+  - given-names: Guitao
+    family-names: Cao
+keywords:
+  - spatial reasoning
+  - vision-language models
+  - counterfactual learning
+  - preference optimization
+  - answer supervision

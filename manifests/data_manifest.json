@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "repo_id": "hongxingli/SpatialLadder-26k",
+    "revision": "41d36f87a67ff676d438417b5a09079add8de866",
+    "revision_status": "PINNED_FROM_HUGGING_FACE_API_2026-08-18",
+    "license": "apache-2.0",
+    "files": {
+      "README.md": "111e1629e6bd0c253cddd51ddd702fdfbb7fbd3c0ab508396c2fe1bf73831826",
+      "spld_grounding_data.jsonl": "30b369a87f5a60617559faee1c3e647f01389e7aaa9bae5f6ed267ca5f92590b",
+      "spld_spatial_data.jsonl": "d87108721f901e09359e1c1e4c9045cf80faa0867ca135ccaed34de2f092c2b8",
+      "spld_coldstart_data.jsonl": "b05802195bda5e85338e965ab567d49fb0f65dee21f5f1a7310f4db956eacf12",
+      "images.zip": "e33e6672b20f67d4e0272800541ec5da4fa380eb212fae502d37b2b0ea19b5d2"
+    }
+  },
+  "derived_manifests": {
+    "relation_pair_v2_candidates": "data/processed/relation_pair_v2_candidates.jsonl",
+    "relation_pair_v2_operator_audit": "data/processed/relation_pair_v2_operator_audit.jsonl",
+    "diagnostic_split": "data/processed/relation_pair_v2_diagnostic.jsonl",
+    "scene_disjoint_reserve": "data/processed/relation_pair_v2_reserve.jsonl",
+    "phase1a_split_summary": "manifests/generated/phase1a_split.json",
+    "train_split": "data/processed/relation_posttrain_train_v1.jsonl",
+    "dev_split": "data/processed/relation_posttrain_dev_v1.jsonl"
+  },
+  "derived_artifact_registry": "manifests/phase1_artifacts.json",
+  "scene_key_policy": {
+    "unit": "base SpatialLadder environment",
+    "source_directory_pattern": "^scene[0-9]+_[0-9]+$",
+    "split_key_pattern": "^scene[0-9]+$",
+    "rule": "strip trailing trajectory suffix"
+  },
+  "split_policy": "base-scene-disjoint; no formal reserve/dev outcome inspection before selection rules are frozen"
+}
